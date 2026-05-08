@@ -3,16 +3,350 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Umbric</title>
+  <title>Umbric — Traceless Browser</title>
+  <meta name="description" content="Umbric is an iOS browser that leaves no trace and shows nothing. No persistent cookies or cache, auto-camouflage when backgrounded, one-tap wipe.">
+  <meta property="og:title" content="Umbric — Traceless Browser">
+  <meta property="og:description" content="Leaves no trace. Shows nothing. Camouflage, ad blocker, one-tap wipe.">
+  <meta property="og:image" content="https://marcy731.github.io/umbric/assets/icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="ja_JP">
+  <link rel="icon" href="../assets/icon.png">
+  <link rel="alternate" hreflang="ja" href="https://marcy731.github.io/umbric/">
+  <link rel="alternate" hreflang="en" href="https://marcy731.github.io/umbric/en/">
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; max-width: 680px; margin: 48px auto; padding: 0 24px; color: #1c1c1e; }
-    h1 { font-size: 28px; font-weight: 700; }
-    a { color: #007aff; font-size: 16px; display: block; margin-top: 16px; }
+    :root {
+      --bg: #0a0a0c;
+      --surface: #16171a;
+      --surface-2: #1f2024;
+      --text: #f4f4f6;
+      --text-muted: #a1a1a6;
+      --text-dim: #6e6e73;
+      --accent: #ff453a;
+      --link: #0a84ff;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.16);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { opacity: 0.8; }
+
+    .container { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+    .lang-switch {
+      display: flex; justify-content: flex-end; gap: 16px;
+      padding: 16px 24px; max-width: 880px; margin: 0 auto;
+      font-size: 13px; color: var(--text-muted);
+    }
+    .lang-switch a { color: var(--text-muted); }
+    .lang-switch .current { color: var(--text); font-weight: 600; }
+
+    .hero { text-align: center; padding: 64px 0 96px; }
+    .hero img.icon {
+      width: 120px; height: 120px; border-radius: 26px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+      margin-bottom: 32px;
+    }
+    .hero h1 {
+      font-size: 44px; line-height: 1.2; font-weight: 700;
+      margin: 0 0 16px;
+      letter-spacing: -0.02em;
+    }
+    .hero .lede {
+      font-size: 17px; color: var(--text-muted);
+      max-width: 560px; margin: 0 auto;
+    }
+    .hero .badges {
+      margin-top: 36px;
+      display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;
+    }
+    .hero .badge {
+      display: inline-block; padding: 10px 20px;
+      background: var(--surface-2); color: var(--text);
+      border: 1px solid var(--border-strong); border-radius: 999px;
+      font-size: 14px;
+    }
+    .hero .badge.muted { color: var(--text-muted); }
+
+    .slide {
+      padding: 80px 0;
+      border-top: 1px solid var(--border);
+    }
+    .slide-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 48px; align-items: center;
+    }
+    @media (max-width: 720px) {
+      .slide-grid { grid-template-columns: 1fr; gap: 36px; }
+      .slide { padding: 56px 0; }
+      .hero { padding: 48px 0 64px; }
+      .hero h1 { font-size: 34px; }
+    }
+    .slide .copy h2 {
+      font-size: 32px; line-height: 1.25; font-weight: 700;
+      margin: 0 0 12px; letter-spacing: -0.01em;
+    }
+    .slide .copy .feature-tag {
+      display: inline-block; margin-top: 4px;
+      padding: 4px 12px; border-radius: 999px;
+      background: var(--surface-2); border: 1px solid var(--border);
+      font-size: 13px; color: var(--text-muted);
+    }
+    .slide .copy p {
+      color: var(--text-muted); margin: 16px 0 0;
+    }
+
+    .phone {
+      width: 280px; aspect-ratio: 9 / 19.5;
+      margin: 0 auto;
+      background: linear-gradient(180deg, #1c1d20 0%, #101113 100%);
+      border-radius: 38px;
+      border: 1px solid var(--border-strong);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.08) inset,
+        0 30px 80px rgba(0, 0, 0, 0.6);
+      padding: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+    .phone::before {
+      content: "";
+      position: absolute; top: 12px; left: 50%;
+      transform: translateX(-50%);
+      width: 96px; height: 26px;
+      background: #000; border-radius: 14px;
+      z-index: 3;
+    }
+    .phone .screen {
+      width: 100%; height: 100%;
+      background: #0c0c0e;
+      border-radius: 26px;
+      overflow: hidden;
+      position: relative;
+      display: flex; flex-direction: column;
+    }
+    .phone .status {
+      height: 44px; flex-shrink: 0;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 22px;
+      font-size: 11px; color: var(--text);
+    }
+    .phone .body {
+      flex: 1; padding: 14px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+
+    .addr-bar {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 8px 12px;
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; color: var(--text-muted);
+    }
+    .addr-bar .dot { width: 8px; height: 8px; border-radius: 50%; background: #34c759; }
+    .addr-bar .shield {
+      margin-left: auto;
+      width: 18px; height: 18px;
+      background: var(--accent);
+      mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2 4 5v7c0 5 3.4 9.2 8 10 4.6-.8 8-5 8-10V5l-8-3z' fill='black'/></svg>") center / contain no-repeat;
+      -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2 4 5v7c0 5 3.4 9.2 8 10 4.6-.8 8-5 8-10V5l-8-3z' fill='black'/></svg>") center / contain no-repeat;
+    }
+    .row {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 11px; color: var(--text-muted);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .row .label { color: var(--text); }
+    .row.strike .label { text-decoration: line-through; color: var(--text-dim); }
+
+    .camo-screen {
+      background: linear-gradient(160deg, #1a1b1f 0%, #0a0a0c 100%);
+      align-items: center; justify-content: center;
+      gap: 14px;
+    }
+    .camo-screen .camo-icon {
+      width: 56px; height: 56px; border-radius: 14px;
+      background: linear-gradient(160deg, #2a2b30, #16171a);
+      border: 1px solid var(--border-strong);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+    }
+    .camo-screen .camo-text { font-size: 13px; color: var(--text-dim); letter-spacing: 0.02em; }
+
+    .blocked {
+      background: rgba(255, 69, 58, 0.08);
+      border: 1px dashed rgba(255, 69, 58, 0.4);
+      color: rgba(255, 69, 58, 0.85);
+    }
+
+    footer {
+      margin-top: 64px; padding: 48px 0 64px;
+      border-top: 1px solid var(--border);
+      color: var(--text-dim); font-size: 14px;
+    }
+    footer .links {
+      display: flex; flex-wrap: wrap; gap: 16px 24px;
+      margin-bottom: 24px;
+    }
+    footer .links a { color: var(--text-muted); }
+    footer .copyright { font-size: 13px; color: var(--text-dim); }
+
+    .slide.alt {
+      background:
+        radial-gradient(1200px 200px at 50% 0%, rgba(255,255,255,0.03), transparent 70%);
+    }
   </style>
 </head>
 <body>
-  <h1>Umbric</h1>
-  <a href="./privacy-policy.html">Privacy Policy</a>
-  <a href="./terms-of-use.html">Terms of Use</a>
+  <div class="lang-switch">
+    <a href="../">日本語</a>
+    <span class="current">English</span>
+  </div>
+
+  <header class="hero container">
+    <img class="icon" src="../assets/icon.png" alt="Umbric">
+    <h1>Leaves no trace.<br>Shows nothing.</h1>
+    <p class="lede">
+      A stranger's glance on a packed train, someone walking behind you in a café,<br>
+      the seconds your phone sits unattended. In those moments, this is what works.
+    </p>
+    <div class="badges">
+      <span class="badge">iOS 26+</span>
+      <span class="badge muted">Coming soon on the App Store</span>
+    </div>
+  </header>
+
+  <!-- Slide 1: Leave no trace -->
+  <section class="slide">
+    <div class="container slide-grid">
+      <div class="copy">
+        <h2>Leave no trace.</h2>
+        <span class="feature-tag">No cookies, no cache, no web storage</span>
+        <p>Cookies, cache, and web storage never persist between sessions. Your browsing history stays on-device only and is never sent externally.</p>
+      </div>
+      <div class="visual">
+        <div class="phone"><div class="screen">
+          <div class="status"><span>9:41</span><span>●●●</span></div>
+          <div class="body">
+            <div class="addr-bar"><span class="dot"></span><span>example.com</span><span class="shield"></span></div>
+            <div class="row"><span class="label">Cookies</span><span>0</span></div>
+            <div class="row"><span class="label">Cache</span><span>0 MB</span></div>
+            <div class="row"><span class="label">Web storage</span><span>0</span></div>
+            <div class="row strike"><span class="label">External send</span><span>—</span></div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 2: Nothing to see -->
+  <section class="slide alt">
+    <div class="container slide-grid">
+      <div class="visual">
+        <div class="phone"><div class="screen camo-screen">
+          <div class="camo-icon"></div>
+          <div class="camo-text">Hidden the moment you switch away</div>
+        </div></div>
+      </div>
+      <div class="copy">
+        <h2>Nothing to see.</h2>
+        <span class="feature-tag">Auto-camouflage when backgrounded</span>
+        <p>The moment Umbric moves to the background, the screen is automatically covered. Reflexive cover for the second a glance comes near.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 3: Wipe in a tap -->
+  <section class="slide">
+    <div class="container slide-grid">
+      <div class="copy">
+        <h2>Wipe in a tap.</h2>
+        <span class="feature-tag">One-tap wipe clears everything</span>
+        <p>Tap the red shield next to the address bar to clear current-mode tabs, recently closed tabs, cookies, cache, and history — by category, all at once.</p>
+      </div>
+      <div class="visual">
+        <div class="phone"><div class="screen">
+          <div class="status"><span>9:41</span><span>●●●</span></div>
+          <div class="body">
+            <div class="addr-bar"><span class="dot"></span><span>example.com</span><span class="shield"></span></div>
+            <div class="row strike"><span class="label">Tabs</span><span>—</span></div>
+            <div class="row strike"><span class="label">Recently closed</span><span>—</span></div>
+            <div class="row strike"><span class="label">Cookies / cache</span><span>—</span></div>
+            <div class="row strike"><span class="label">History</span><span>—</span></div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 4: Private Mode -->
+  <section class="slide alt">
+    <div class="container slide-grid">
+      <div class="visual">
+        <div class="phone"><div class="screen">
+          <div class="status"><span>9:41</span><span>●●●</span></div>
+          <div class="body">
+            <div class="addr-bar"><span class="dot" style="background:#ff9f0a"></span><span>Private Mode</span><span class="shield"></span></div>
+            <div class="row"><span class="label">Regular tabs</span><span>3</span></div>
+            <div class="row"><span class="label">Private tabs</span><span>2</span></div>
+            <div class="row"><span class="label">Face ID lock</span><span>ON</span></div>
+            <div class="row"><span class="label">Focus Filter</span><span>linked</span></div>
+          </div>
+        </div></div>
+      </div>
+      <div class="copy">
+        <h2>Your privacy,<br>your call.</h2>
+        <span class="feature-tag">Private Mode keeps browsing separate</span>
+        <p>Private Mode is Face ID-protected and keeps bookmarks, history, and tabs in a separate space. iOS Focus Filters can switch it on automatically.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: Ads / trackers / fingerprint -->
+  <section class="slide">
+    <div class="container slide-grid">
+      <div class="copy">
+        <h2>Ads &amp; trackers, gone.</h2>
+        <span class="feature-tag">Two-layer blocking + fingerprint shield</span>
+        <p>Two-layer blocking at the network and DOM levels stops ads and trackers. Built-in scripts also resist fingerprinting on Canvas, WebGL, AudioContext, and Navigator.</p>
+      </div>
+      <div class="visual">
+        <div class="phone"><div class="screen">
+          <div class="status"><span>9:41</span><span>●●●</span></div>
+          <div class="body">
+            <div class="addr-bar"><span class="dot"></span><span>news-site.example</span><span class="shield"></span></div>
+            <div class="row blocked"><span class="label">Ads (network)</span><span>blocked</span></div>
+            <div class="row blocked"><span class="label">Ads (DOM)</span><span>blocked</span></div>
+            <div class="row blocked"><span class="label">Trackers</span><span>blocked</span></div>
+            <div class="row blocked"><span class="label">Fingerprinting</span><span>blocked</span></div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="links">
+        <a href="./privacy-policy/">Privacy Policy</a>
+        <a href="./terms-of-use/">Terms of Use</a>
+        <a href="../support/">Contact</a>
+        <a href="https://x.com/marcy731" target="_blank" rel="noopener">@marcy731</a>
+        <a href="https://github.com/marcy731/Umbric" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <p class="copyright">No trace. Nothing shown. — Umbric.<br>&copy; 2026 marcy731. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>
