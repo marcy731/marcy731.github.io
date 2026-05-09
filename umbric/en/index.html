@@ -3,16 +3,272 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Umbric</title>
+  <title>Umbric — Leaves no trace. Shows nothing.</title>
+  <meta name="description" content="Umbric is an iOS browser that leaves no trace and shows nothing. Cookies, cache, and web storage are wiped between sessions, ads and trackers are blocked at two layers, and the screen auto-camouflages the moment you switch away.">
+  <meta name="keywords" content="Umbric, iOS browser, privacy, ad blocker, camouflage, private mode, history wipe, anti-tracking, incognito, no trace">
+  <meta name="theme-color" content="#1c1c1e">
+  <meta name="robots" content="index,follow">
+  <meta name="format-detection" content="telephone=no">
+
+  <link rel="canonical" href="https://marcy731.github.io/umbric/en/">
+  <link rel="alternate" hreflang="ja" href="https://marcy731.github.io/umbric/">
+  <link rel="alternate" hreflang="en" href="https://marcy731.github.io/umbric/en/">
+  <link rel="alternate" hreflang="x-default" href="https://marcy731.github.io/umbric/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Umbric">
+  <meta property="og:title" content="Umbric — Leaves no trace. Shows nothing.">
+  <meta property="og:description" content="No trace. Nothing shown. An iOS browser that protects you in the moment a glance comes near.">
+  <meta property="og:url" content="https://marcy731.github.io/umbric/en/">
+  <meta property="og:image" content="https://marcy731.github.io/umbric/assets/og-image.png">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="ja_JP">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Umbric — Leaves no trace. Shows nothing.">
+  <meta name="twitter:description" content="No trace. Nothing shown. An iOS browser that protects you in the moment a glance comes near.">
+  <meta name="twitter:image" content="https://marcy731.github.io/umbric/assets/og-image.png">
+  <meta name="twitter:site" content="@marcy731">
+  <meta name="twitter:creator" content="@marcy731">
+
+  <!-- TODO: Once Apple issues an App Store ID, enable Smart App Banner:
+       <meta name="apple-itunes-app" content="app-id=XXXXXXXXX"> -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "Umbric",
+    "alternateName": "Umbric - Traceless Browser",
+    "description": "iOS browser that leaves no trace and shows nothing. Cookies and cache are wiped between sessions, ads and trackers are blocked at two layers, and the screen auto-camouflages on backgrounding.",
+    "applicationCategory": "UtilitiesApplication",
+    "applicationSubCategory": "Browser",
+    "operatingSystem": "iOS 26.0 or later",
+    "url": "https://marcy731.github.io/umbric/en/",
+    "image": "https://marcy731.github.io/umbric/assets/og-image.png",
+    "inLanguage": ["en", "ja", "de", "fr", "es", "it", "ko", "zh-Hans", "zh-Hant", "vi", "hi", "th"],
+    "author": {
+      "@type": "Person",
+      "name": "Masashi Hasegawa",
+      "url": "https://x.com/marcy731"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "category": "Freemium"
+    }
+  }
+  </script>
+
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; max-width: 680px; margin: 48px auto; padding: 0 24px; color: #1c1c1e; }
-    h1 { font-size: 28px; font-weight: 700; }
-    a { color: #007aff; font-size: 16px; display: block; margin-top: 16px; }
+    *,*::before,*::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+      margin: 0;
+      color: #1c1c1e;
+      line-height: 1.7;
+      background: #fafafa;
+    }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+    header {
+      padding: 80px 0 56px;
+      text-align: center;
+      background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+    }
+    .icon {
+      width: 96px; height: 96px;
+      border-radius: 22px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.06);
+      margin-bottom: 24px;
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 0 0 8px;
+    }
+    .hero-copy {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin: 16px 0 8px;
+    }
+    .slogan {
+      font-size: 17px;
+      color: #3a3a3c;
+      margin: 0 0 32px;
+    }
+    .ctas {
+      display: inline-flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform .12s ease;
+    }
+    .cta-primary { background: #1c1c1e; color: #fff; }
+    .cta-primary:hover { transform: translateY(-1px); }
+    .cta-secondary { color: #1c1c1e; border: 1px solid #d1d1d6; }
+    .cta-note { font-size: 13px; color: #8e8e93; margin-top: 14px; }
+
+    section { padding: 56px 0; border-top: 1px solid #ececef; }
+    h2 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin: 0 0 24px;
+    }
+
+    .axes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .axis {
+      padding: 24px;
+      background: #fff;
+      border: 1px solid #ececef;
+      border-radius: 16px;
+    }
+    .axis h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin: 0 0 8px;
+      letter-spacing: -0.01em;
+    }
+    .axis p { font-size: 14px; color: #3a3a3c; margin: 0; }
+    @media (max-width: 560px) {
+      .axes { grid-template-columns: 1fr; }
+    }
+
+    .features { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 24px; }
+    .features li {
+      list-style: none;
+      padding: 14px 0 14px 24px;
+      position: relative;
+      font-size: 15px;
+      color: #3a3a3c;
+      border-bottom: 1px solid #ececef;
+    }
+    .features li::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 22px;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #1c1c1e;
+    }
+    .features ul { padding: 0; margin: 0; }
+    @media (max-width: 560px) {
+      .features { grid-template-columns: 1fr; }
+    }
+
+    .about p {
+      font-size: 15px;
+      color: #3a3a3c;
+      margin: 0 0 16px;
+    }
+    .closing {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1c1c1e;
+      letter-spacing: -0.01em;
+      margin-top: 24px;
+    }
+
+    footer {
+      padding: 48px 0 64px;
+      border-top: 1px solid #ececef;
+      font-size: 13px;
+      color: #8e8e93;
+    }
+    footer .links {
+      display: flex; gap: 20px; flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    footer a { color: #1c1c1e; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    .lang { margin-top: 16px; }
   </style>
 </head>
 <body>
-  <h1>Umbric</h1>
-  <a href="./privacy-policy.html">Privacy Policy</a>
-  <a href="./terms-of-use.html">Terms of Use</a>
+  <header>
+    <div class="wrap">
+      <img class="icon" src="../assets/og-image.png" alt="Umbric app icon" width="96" height="96">
+      <h1>Umbric</h1>
+      <p class="hero-copy">Leaves no trace. Shows nothing.</p>
+      <p class="slogan">No trace. Nothing shown.</p>
+      <div class="ctas">
+        <a class="cta cta-primary" href="https://github.com/marcy731/Umbric">View project</a>
+        <a class="cta cta-secondary" href="#features">See features</a>
+      </div>
+      <p class="cta-note">App Store launch in preparation. Follow updates on GitHub or <a href="https://x.com/marcy731">@marcy731</a>.</p>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap">
+      <h2>Two axes of protection</h2>
+      <div class="axes">
+        <div class="axis">
+          <h3>Leaves no trace</h3>
+          <p>Cookies, cache, and web storage are not persisted between sessions and never sent externally. Browsing history stays on-device only and can be wiped with one tap.</p>
+        </div>
+        <div class="axis">
+          <h3>Shows nothing</h3>
+          <p>Designed for the moment a glance comes near, a brief hand-off, or a need to disguise. The screen auto-camouflages the instant you switch away.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="wrap">
+      <h2>Key features</h2>
+      <ul class="features">
+        <li>Non-persistent storage for cookies, cache, and web storage</li>
+        <li>Browsing history stays on-device, never sent externally</li>
+        <li>Face ID-protected Private Mode keeps a separate space</li>
+        <li>Two-layer ad &amp; tracker blocking (network + DOM)</li>
+        <li>Fingerprinting protection (Canvas, WebGL, AudioContext)</li>
+        <li>HTTPS enforcement and JavaScript dialog blocking</li>
+        <li>One-tap wipe by category (history, cookies, cache, more)</li>
+        <li>Focus Filter integration switches Private Mode automatically</li>
+        <li>Recently closed tab restore and reader mode</li>
+        <li>Video download and in-page search</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="wrap">
+      <h2>About the name</h2>
+      <p>"Umbric" combines Umbra (Latin for shadow) with the idea of a deft, well-considered move. Sit beside you without taking up space, slip out of sight the moment a glance comes near — your privacy, kept by your own hand.</p>
+      <p>Leaving no trace isn't about deceiving anyone. It's about taking care of your own privacy.</p>
+      <p class="closing">No trace. Nothing shown. — Umbric.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="links">
+        <a href="./privacy-policy/">Privacy Policy</a>
+        <a href="./terms-of-use/">Terms of Use</a>
+        <a href="../support/">Contact</a>
+        <a href="https://github.com/marcy731/Umbric">GitHub</a>
+      </div>
+      <p>© 2026 Masashi Hasegawa</p>
+      <p class="lang"><a href="../">日本語</a></p>
+    </div>
+  </footer>
 </body>
 </html>
