@@ -41,7 +41,6 @@
 
     .container { max-width: 880px; margin: 0 auto; padding: 0 24px; }
 
-    /* Top language switch */
     .lang-switch {
       display: flex; justify-content: flex-end; gap: 16px;
       padding: 16px 24px; max-width: 880px; margin: 0 auto;
@@ -50,7 +49,6 @@
     .lang-switch a { color: var(--text-muted); }
     .lang-switch .current { color: var(--text); font-weight: 600; }
 
-    /* Hero */
     .hero { text-align: center; padding: 64px 0 96px; }
     .hero img.icon {
       width: 120px; height: 120px; border-radius: 26px;
@@ -62,7 +60,6 @@
       margin: 0 0 16px;
       letter-spacing: -0.02em;
     }
-    .hero h1 .accent { color: var(--accent); }
     .hero .lede {
       font-size: 17px; color: var(--text-muted);
       max-width: 560px; margin: 0 auto;
@@ -79,7 +76,6 @@
     }
     .hero .badge.muted { color: var(--text-muted); }
 
-    /* Section: feature slide */
     .slide {
       padding: 80px 0;
       border-top: 1px solid var(--border);
@@ -108,7 +104,7 @@
       color: var(--text-muted); margin: 16px 0 0;
     }
 
-    /* Phone frame mock */
+    /* iPhone bezel as a CSS frame; the screen content is a real screenshot */
     .phone {
       width: 280px; aspect-ratio: 9 / 19.5;
       margin: 0 auto;
@@ -122,84 +118,25 @@
       position: relative;
       overflow: hidden;
     }
-    .phone::before {
-      /* Dynamic Island */
-      content: "";
-      position: absolute; top: 12px; left: 50%;
-      transform: translateX(-50%);
-      width: 96px; height: 26px;
-      background: #000; border-radius: 14px;
-      z-index: 3;
-    }
     .phone .screen {
       width: 100%; height: 100%;
       background: #0c0c0e;
       border-radius: 26px;
       overflow: hidden;
       position: relative;
-      display: flex; flex-direction: column;
     }
-    .phone .status {
-      height: 44px; flex-shrink: 0;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 0 22px;
-      font-size: 11px; color: var(--text);
-    }
-    .phone .body {
-      flex: 1; padding: 14px;
-      display: flex; flex-direction: column; gap: 10px;
+    .phone-screenshot {
+      width: 100%; height: 100%;
+      display: block;
+      object-fit: cover;
+      border-radius: 26px;
     }
 
-    /* In-phone UI primitives */
-    .addr-bar {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 8px 12px;
-      display: flex; align-items: center; gap: 8px;
-      font-size: 12px; color: var(--text-muted);
-    }
-    .addr-bar .dot { width: 8px; height: 8px; border-radius: 50%; background: #34c759; }
-    .addr-bar .shield {
-      margin-left: auto;
-      width: 18px; height: 18px;
-      background: var(--accent);
-      mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2 4 5v7c0 5 3.4 9.2 8 10 4.6-.8 8-5 8-10V5l-8-3z' fill='black'/></svg>") center / contain no-repeat;
-      -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2 4 5v7c0 5 3.4 9.2 8 10 4.6-.8 8-5 8-10V5l-8-3z' fill='black'/></svg>") center / contain no-repeat;
-    }
-    .row {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 8px 10px;
-      font-size: 11px; color: var(--text-muted);
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .row .label { color: var(--text); }
-    .row.strike .label { text-decoration: line-through; color: var(--text-dim); }
-
-    /* Camouflage scene */
-    .camo-screen {
-      background: linear-gradient(160deg, #1a1b1f 0%, #0a0a0c 100%);
-      align-items: center; justify-content: center;
-      gap: 14px;
-    }
-    .camo-screen .camo-icon {
-      width: 56px; height: 56px; border-radius: 14px;
-      background: linear-gradient(160deg, #2a2b30, #16171a);
-      border: 1px solid var(--border-strong);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
-    }
-    .camo-screen .camo-text { font-size: 13px; color: var(--text-dim); letter-spacing: 0.02em; }
-
-    /* Ad-blocked scene */
-    .blocked {
-      background: rgba(255, 69, 58, 0.08);
-      border: 1px dashed rgba(255, 69, 58, 0.4);
-      color: rgba(255, 69, 58, 0.85);
+    .slide.alt {
+      background:
+        radial-gradient(1200px 200px at 50% 0%, rgba(255,255,255,0.03), transparent 70%);
     }
 
-    /* Footer */
     footer {
       margin-top: 64px; padding: 48px 0 64px;
       border-top: 1px solid var(--border);
@@ -211,12 +148,6 @@
     }
     footer .links a { color: var(--text-muted); }
     footer .copyright { font-size: 13px; color: var(--text-dim); }
-
-    /* Subtle floor for slides 2/4 to add rhythm */
-    .slide.alt {
-      background:
-        radial-gradient(1200px 200px at 50% 0%, rgba(255,255,255,0.03), transparent 70%);
-    }
   </style>
 </head>
 <body>
@@ -248,14 +179,11 @@
       </div>
       <div class="visual">
         <div class="phone"><div class="screen">
-          <div class="status"><span>9:41</span><span>●●●</span></div>
-          <div class="body">
-            <div class="addr-bar"><span class="dot"></span><span>example.com</span><span class="shield"></span></div>
-            <div class="row"><span class="label">Cookie</span><span>0</span></div>
-            <div class="row"><span class="label">キャッシュ</span><span>0 MB</span></div>
-            <div class="row"><span class="label">Web ストレージ</span><span>0</span></div>
-            <div class="row strike"><span class="label">外部送信</span><span>—</span></div>
-          </div>
+          <img class="phone-screenshot"
+               src="./assets/screenshots/ja/01-traceless.png"
+               alt="通常ブラウザの画面"
+               loading="lazy"
+               onerror="this.style.display='none'">
         </div></div>
       </div>
     </div>
@@ -265,9 +193,12 @@
   <section class="slide alt">
     <div class="container slide-grid">
       <div class="visual">
-        <div class="phone"><div class="screen camo-screen">
-          <div class="camo-icon"></div>
-          <div class="camo-text">背面に回した瞬間、隠れる</div>
+        <div class="phone"><div class="screen">
+          <img class="phone-screenshot"
+               src="./assets/screenshots/ja/02-camouflage.png"
+               alt="バックグラウンド遷移時のカモフラージュ画面"
+               loading="lazy"
+               onerror="this.style.display='none'">
         </div></div>
       </div>
       <div class="copy">
@@ -288,14 +219,11 @@
       </div>
       <div class="visual">
         <div class="phone"><div class="screen">
-          <div class="status"><span>9:41</span><span>●●●</span></div>
-          <div class="body">
-            <div class="addr-bar"><span class="dot"></span><span>example.com</span><span class="shield"></span></div>
-            <div class="row strike"><span class="label">タブ</span><span>—</span></div>
-            <div class="row strike"><span class="label">最近閉じたタブ</span><span>—</span></div>
-            <div class="row strike"><span class="label">Cookie / キャッシュ</span><span>—</span></div>
-            <div class="row strike"><span class="label">履歴</span><span>—</span></div>
-          </div>
+          <img class="phone-screenshot"
+               src="./assets/screenshots/ja/03-wipe.png"
+               alt="赤シールド押下でデータ消去ダイアログ"
+               loading="lazy"
+               onerror="this.style.display='none'">
         </div></div>
       </div>
     </div>
@@ -306,14 +234,11 @@
     <div class="container slide-grid">
       <div class="visual">
         <div class="phone"><div class="screen">
-          <div class="status"><span>9:41</span><span>●●●</span></div>
-          <div class="body">
-            <div class="addr-bar"><span class="dot" style="background:#ff9f0a"></span><span>内緒モード</span><span class="shield"></span></div>
-            <div class="row"><span class="label">通常タブ</span><span>3</span></div>
-            <div class="row"><span class="label">内緒タブ</span><span>2</span></div>
-            <div class="row"><span class="label">Face ID 保護</span><span>ON</span></div>
-            <div class="row"><span class="label">Focus フィルター</span><span>連動</span></div>
-          </div>
+          <img class="phone-screenshot"
+               src="./assets/screenshots/ja/04-private-mode.png"
+               alt="内緒モードのタブ一覧"
+               loading="lazy"
+               onerror="this.style.display='none'">
         </div></div>
       </div>
       <div class="copy">
@@ -334,14 +259,11 @@
       </div>
       <div class="visual">
         <div class="phone"><div class="screen">
-          <div class="status"><span>9:41</span><span>●●●</span></div>
-          <div class="body">
-            <div class="addr-bar"><span class="dot"></span><span>news-site.example</span><span class="shield"></span></div>
-            <div class="row blocked"><span class="label">広告（Network 層）</span><span>blocked</span></div>
-            <div class="row blocked"><span class="label">広告（DOM 層）</span><span>blocked</span></div>
-            <div class="row blocked"><span class="label">トラッカー</span><span>blocked</span></div>
-            <div class="row blocked"><span class="label">指紋採取</span><span>blocked</span></div>
-          </div>
+          <img class="phone-screenshot"
+               src="./assets/screenshots/ja/05-adblock.png"
+               alt="広告ブロックが効いた状態のページ"
+               loading="lazy"
+               onerror="this.style.display='none'">
         </div></div>
       </div>
     </div>

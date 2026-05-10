@@ -104,6 +104,7 @@
       color: var(--text-muted); margin: 16px 0 0;
     }
 
+    /* iPhone bezel as a CSS frame; the screen content is a real screenshot */
     .phone {
       width: 280px; aspect-ratio: 9 / 19.5;
       margin: 0 auto;
@@ -117,77 +118,23 @@
       position: relative;
       overflow: hidden;
     }
-    .phone::before {
-      content: "";
-      position: absolute; top: 12px; left: 50%;
-      transform: translateX(-50%);
-      width: 96px; height: 26px;
-      background: #000; border-radius: 14px;
-      z-index: 3;
-    }
     .phone .screen {
       width: 100%; height: 100%;
       background: #0c0c0e;
       border-radius: 26px;
       overflow: hidden;
       position: relative;
-      display: flex; flex-direction: column;
     }
-    .phone .status {
-      height: 44px; flex-shrink: 0;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 0 22px;
-      font-size: 11px; color: var(--text);
-    }
-    .phone .body {
-      flex: 1; padding: 14px;
-      display: flex; flex-direction: column; gap: 10px;
+    .phone-screenshot {
+      width: 100%; height: 100%;
+      display: block;
+      object-fit: cover;
+      border-radius: 26px;
     }
 
-    .addr-bar {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 8px 12px;
-      display: flex; align-items: center; gap: 8px;
-      font-size: 12px; color: var(--text-muted);
-    }
-    .addr-bar .dot { width: 8px; height: 8px; border-radius: 50%; background: #34c759; }
-    .addr-bar .shield {
-      margin-left: auto;
-      width: 18px; height: 18px;
-      background: var(--accent);
-      mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2 4 5v7c0 5 3.4 9.2 8 10 4.6-.8 8-5 8-10V5l-8-3z' fill='black'/></svg>") center / contain no-repeat;
-      -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2 4 5v7c0 5 3.4 9.2 8 10 4.6-.8 8-5 8-10V5l-8-3z' fill='black'/></svg>") center / contain no-repeat;
-    }
-    .row {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 8px 10px;
-      font-size: 11px; color: var(--text-muted);
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .row .label { color: var(--text); }
-    .row.strike .label { text-decoration: line-through; color: var(--text-dim); }
-
-    .camo-screen {
-      background: linear-gradient(160deg, #1a1b1f 0%, #0a0a0c 100%);
-      align-items: center; justify-content: center;
-      gap: 14px;
-    }
-    .camo-screen .camo-icon {
-      width: 56px; height: 56px; border-radius: 14px;
-      background: linear-gradient(160deg, #2a2b30, #16171a);
-      border: 1px solid var(--border-strong);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
-    }
-    .camo-screen .camo-text { font-size: 13px; color: var(--text-dim); letter-spacing: 0.02em; }
-
-    .blocked {
-      background: rgba(255, 69, 58, 0.08);
-      border: 1px dashed rgba(255, 69, 58, 0.4);
-      color: rgba(255, 69, 58, 0.85);
+    .slide.alt {
+      background:
+        radial-gradient(1200px 200px at 50% 0%, rgba(255,255,255,0.03), transparent 70%);
     }
 
     footer {
@@ -201,11 +148,6 @@
     }
     footer .links a { color: var(--text-muted); }
     footer .copyright { font-size: 13px; color: var(--text-dim); }
-
-    .slide.alt {
-      background:
-        radial-gradient(1200px 200px at 50% 0%, rgba(255,255,255,0.03), transparent 70%);
-    }
   </style>
 </head>
 <body>
@@ -237,14 +179,11 @@
       </div>
       <div class="visual">
         <div class="phone"><div class="screen">
-          <div class="status"><span>9:41</span><span>●●●</span></div>
-          <div class="body">
-            <div class="addr-bar"><span class="dot"></span><span>example.com</span><span class="shield"></span></div>
-            <div class="row"><span class="label">Cookies</span><span>0</span></div>
-            <div class="row"><span class="label">Cache</span><span>0 MB</span></div>
-            <div class="row"><span class="label">Web storage</span><span>0</span></div>
-            <div class="row strike"><span class="label">External send</span><span>—</span></div>
-          </div>
+          <img class="phone-screenshot"
+               src="../assets/screenshots/en/01-traceless.png"
+               alt="Regular browser screen"
+               loading="lazy"
+               onerror="this.style.display='none'">
         </div></div>
       </div>
     </div>
@@ -254,9 +193,12 @@
   <section class="slide alt">
     <div class="container slide-grid">
       <div class="visual">
-        <div class="phone"><div class="screen camo-screen">
-          <div class="camo-icon"></div>
-          <div class="camo-text">Hidden the moment you switch away</div>
+        <div class="phone"><div class="screen">
+          <img class="phone-screenshot"
+               src="../assets/screenshots/en/02-camouflage.png"
+               alt="Camouflage screen on background transition"
+               loading="lazy"
+               onerror="this.style.display='none'">
         </div></div>
       </div>
       <div class="copy">
@@ -277,14 +219,11 @@
       </div>
       <div class="visual">
         <div class="phone"><div class="screen">
-          <div class="status"><span>9:41</span><span>●●●</span></div>
-          <div class="body">
-            <div class="addr-bar"><span class="dot"></span><span>example.com</span><span class="shield"></span></div>
-            <div class="row strike"><span class="label">Tabs</span><span>—</span></div>
-            <div class="row strike"><span class="label">Recently closed</span><span>—</span></div>
-            <div class="row strike"><span class="label">Cookies / cache</span><span>—</span></div>
-            <div class="row strike"><span class="label">History</span><span>—</span></div>
-          </div>
+          <img class="phone-screenshot"
+               src="../assets/screenshots/en/03-wipe.png"
+               alt="Wipe data dialog after tapping the red shield"
+               loading="lazy"
+               onerror="this.style.display='none'">
         </div></div>
       </div>
     </div>
@@ -295,14 +234,11 @@
     <div class="container slide-grid">
       <div class="visual">
         <div class="phone"><div class="screen">
-          <div class="status"><span>9:41</span><span>●●●</span></div>
-          <div class="body">
-            <div class="addr-bar"><span class="dot" style="background:#ff9f0a"></span><span>Private Mode</span><span class="shield"></span></div>
-            <div class="row"><span class="label">Regular tabs</span><span>3</span></div>
-            <div class="row"><span class="label">Private tabs</span><span>2</span></div>
-            <div class="row"><span class="label">Face ID lock</span><span>ON</span></div>
-            <div class="row"><span class="label">Focus Filter</span><span>linked</span></div>
-          </div>
+          <img class="phone-screenshot"
+               src="../assets/screenshots/en/04-private-mode.png"
+               alt="Private Mode tab list"
+               loading="lazy"
+               onerror="this.style.display='none'">
         </div></div>
       </div>
       <div class="copy">
@@ -323,14 +259,11 @@
       </div>
       <div class="visual">
         <div class="phone"><div class="screen">
-          <div class="status"><span>9:41</span><span>●●●</span></div>
-          <div class="body">
-            <div class="addr-bar"><span class="dot"></span><span>news-site.example</span><span class="shield"></span></div>
-            <div class="row blocked"><span class="label">Ads (network)</span><span>blocked</span></div>
-            <div class="row blocked"><span class="label">Ads (DOM)</span><span>blocked</span></div>
-            <div class="row blocked"><span class="label">Trackers</span><span>blocked</span></div>
-            <div class="row blocked"><span class="label">Fingerprinting</span><span>blocked</span></div>
-          </div>
+          <img class="phone-screenshot"
+               src="../assets/screenshots/en/05-adblock.png"
+               alt="Page with ad blocker engaged"
+               loading="lazy"
+               onerror="this.style.display='none'">
         </div></div>
       </div>
     </div>
