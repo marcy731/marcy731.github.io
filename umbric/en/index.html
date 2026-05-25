@@ -294,6 +294,56 @@
       background: var(--text-dim);
     }
 
+    .pro-badge-wrap {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .pro-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 12px;
+      background: var(--accent);
+      color: var(--bg);
+      border-radius: 999px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .pro-highlights {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 40px 0;
+    }
+    .pro-feature {
+      padding: 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+    .pro-feature h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin: 0 0 8px;
+      letter-spacing: -0.01em;
+    }
+    .pro-feature p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+    .pro-price {
+      text-align: center;
+      font-size: 15px;
+      color: var(--text-muted);
+      margin: 32px 0 0;
+    }
+    .pro-price strong {
+      color: var(--text);
+      font-weight: 700;
+      font-size: 18px;
+    }
+
     .why {
       max-width: 640px;
       margin: 0 auto;
@@ -407,7 +457,8 @@
       .hero-copy { font-size: 19px; }
       section { padding: 56px 0; }
       .use-cases-grid,
-      .feature-highlights { grid-template-columns: 1fr; }
+      .feature-highlights,
+      .pro-highlights { grid-template-columns: 1fr; }
       .axes { grid-template-columns: 1fr; }
       .other-features { grid-template-columns: 1fr; }
       .showcase { padding: 0 16px 40px; }
@@ -509,12 +560,65 @@
         <li>Non-persistent storage for cookies, cache, and web storage</li>
         <li>Browsing history stays on-device, never sent externally</li>
         <li>Two-layer ad &amp; tracker blocking (network + DOM)</li>
-        <li>Fingerprinting protection (Canvas, WebGL, AudioContext)</li>
-        <li>HTTPS enforcement and JavaScript dialog blocking</li>
+        <li>Auto-reject cookie consent banners (14 major CMP types)</li>
+        <li>Strip tracking parameters from URLs (utm_, fbclid, gclid, etc.)</li>
+        <li>Fingerprinting protection (Canvas, WebGL, AudioContext, Navigator)</li>
+        <li>HTTPS enforcement, fraud-site warning, JS dialog blocking</li>
+        <li>Lockdown Mode (apply iOS-grade hardening only to Umbric)</li>
+        <li>Seven filter lists bundled (including EasyList Japan)</li>
         <li>Focus Filter integration switches Private Mode automatically</li>
-        <li>Recently closed tab restore and reader mode</li>
-        <li>Video download and in-page search</li>
+        <li>Reader mode with read-aloud &amp; summary / Recently closed tab restore</li>
+        <li>12 languages with per-app language switching</li>
       </ul>
+    </div>
+  </section>
+
+  <section class="pro">
+    <div class="wrap">
+      <div class="pro-badge-wrap"><span class="pro-badge">Umbric Pro</span></div>
+      <h2>One more layer of cover.</h2>
+      <p class="section-lede">Redraw the line of protection by your own hand. Layer active "shows nothing" controls over the free defenses.</p>
+
+      <div class="pro-highlights">
+        <div class="pro-feature">
+          <h3>Tilt Camouflage</h3>
+          <p>A quick tilt pulls the camouflage screen over. Sensitivity adjustable in three stages.</p>
+        </div>
+        <div class="pro-feature">
+          <h3>Shake to Wipe</h3>
+          <p>Shake to wipe all tabs and cookies at once — a gesture you can't trigger by mistake.</p>
+        </div>
+        <div class="pro-feature">
+          <h3>Screen Capture Block</h3>
+          <p>The camouflage screen takes over automatically during screen recording or mirroring.</p>
+        </div>
+        <div class="pro-feature">
+          <h3>Disguised Icon</h3>
+          <p>Replace the app icon and display name. "Umbric" disappears from the Home Screen.</p>
+        </div>
+        <div class="pro-feature">
+          <h3>Locked Bookmark Folder</h3>
+          <p>A hidden bookmark folder behind Face ID — yours alone.</p>
+        </div>
+        <div class="pro-feature">
+          <h3>UserScript</h3>
+          <p>Tampermonkey-style scripts. Customize and automate sites freely.</p>
+        </div>
+      </div>
+
+      <p class="other-features-title">More Pro features</p>
+      <ul class="other-features">
+        <li>Custom search engine entries</li>
+        <li>Custom User-Agent / per-site UA override</li>
+        <li>Unlimited per-site ad allowlist</li>
+        <li>Unlimited tap-to-block (long-press images)</li>
+        <li>Auto-updating filter lists</li>
+        <li>Unlimited video downloads</li>
+        <li>Accent color customization</li>
+        <li>Expanded recently-closed tab queue</li>
+      </ul>
+
+      <p class="pro-price"><strong>One-time purchase</strong>. No subscription.</p>
     </div>
   </section>
 

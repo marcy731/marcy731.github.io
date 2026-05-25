@@ -297,6 +297,57 @@
       background: var(--text-dim);
     }
 
+    /* Umbric Pro */
+    .pro-badge-wrap {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .pro-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 12px;
+      background: var(--accent);
+      color: var(--bg);
+      border-radius: 999px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .pro-highlights {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 40px 0;
+    }
+    .pro-feature {
+      padding: 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+    .pro-feature h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin: 0 0 8px;
+      letter-spacing: -0.01em;
+    }
+    .pro-feature p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+    .pro-price {
+      text-align: center;
+      font-size: 15px;
+      color: var(--text-muted);
+      margin: 32px 0 0;
+    }
+    .pro-price strong {
+      color: var(--text);
+      font-weight: 700;
+      font-size: 18px;
+    }
+
     /* Why */
     .why {
       max-width: 640px;
@@ -415,7 +466,8 @@
       .hero-copy { font-size: 19px; }
       section { padding: 56px 0; }
       .use-cases-grid,
-      .feature-highlights { grid-template-columns: 1fr; }
+      .feature-highlights,
+      .pro-highlights { grid-template-columns: 1fr; }
       .axes { grid-template-columns: 1fr; }
       .other-features { grid-template-columns: 1fr; }
       .showcase { padding: 0 16px 40px; }
@@ -516,13 +568,66 @@
       <ul class="other-features">
         <li>Cookie・キャッシュを非永続化（セッション間に残らない）</li>
         <li>閲覧履歴は端末内のみ、外部送信なし</li>
-        <li>広告とトラッカーを 2 段階でブロック</li>
-        <li>指紋採取（Fingerprinting）対策スクリプト内蔵</li>
-        <li>HTTPS 強制 / JS ダイアログ遮断</li>
+        <li>広告とトラッカーを 2 段階で遮断（ネットワーク + DOM）</li>
+        <li>Cookie 同意バナーを自動 reject（主要 14 種 CMP 対応）</li>
+        <li>URL から追跡パラメータを自動除去（utm_, fbclid, gclid 等）</li>
+        <li>指紋採取対策（Canvas / WebGL / AudioContext / Navigator）</li>
+        <li>HTTPS 強制 / 詐欺サイト警告 / JS ダイアログ遮断</li>
+        <li>Lockdown Mode 強制（Umbric だけに iOS 相当の最強制限を適用）</li>
+        <li>EasyList Japan 含む 7 本のフィルタリストを同梱</li>
         <li>Focus フィルター連携で内緒モードを自動切替</li>
-        <li>最近閉じたタブの復元 / リーダーモード</li>
-        <li>動画ダウンロード / ページ内検索</li>
+        <li>リーダーモード（読み上げ・要約対応）/ 最近閉じたタブ復元</li>
+        <li>12 言語対応（アプリ単位での言語切替）</li>
       </ul>
+    </div>
+  </section>
+
+  <section class="pro">
+    <div class="wrap">
+      <div class="pro-badge-wrap"><span class="pro-badge">Umbric Pro</span></div>
+      <h2>もう一段、見せない。</h2>
+      <p class="section-lede">守りの線を、自分の手で引き直す。Free の防御に、能動的な "見せない" を重ねるアップグレード。</p>
+
+      <div class="pro-highlights">
+        <div class="pro-feature">
+          <h3>Tilt Camouflage</h3>
+          <p>端末を素早く傾けるとカモフラ画面が被さる。感度を 3 段階で調整。</p>
+        </div>
+        <div class="pro-feature">
+          <h3>Shake to Wipe</h3>
+          <p>端末を振るだけで全タブ・Cookie を一括消去。押し間違えないジェスチャー。</p>
+        </div>
+        <div class="pro-feature">
+          <h3>Screen Capture Block</h3>
+          <p>画面録画・ミラーリング中は自動でカモフラ画面に置き換わる。</p>
+        </div>
+        <div class="pro-feature">
+          <h3>偽装アイコン</h3>
+          <p>アイコンと表示名を別アプリに偽装。ホーム画面から "Umbric" を消せる。</p>
+        </div>
+        <div class="pro-feature">
+          <h3>ロックフォルダ</h3>
+          <p>Face ID で守られたブックマークの隠しフォルダを持てる。</p>
+        </div>
+        <div class="pro-feature">
+          <h3>UserScript</h3>
+          <p>Tampermonkey 風の自前スクリプト。サイトの挙動を自由に調整できる。</p>
+        </div>
+      </div>
+
+      <p class="other-features-title">その他 Pro 機能</p>
+      <ul class="other-features">
+        <li>カスタム検索エンジン追加</li>
+        <li>カスタム User-Agent / サイト別 UA 上書き</li>
+        <li>サイト別広告 allowlist 無制限</li>
+        <li>タップでブロック無制限（画像長押し）</li>
+        <li>フィルタリスト自動更新</li>
+        <li>動画ダウンロード無制限</li>
+        <li>アクセントカラー変更</li>
+        <li>閉じたタブ復元枠の拡張</li>
+      </ul>
+
+      <p class="pro-price">買い切り <strong>¥1,200</strong>。サブスクリプションなし。</p>
     </div>
   </section>
 
