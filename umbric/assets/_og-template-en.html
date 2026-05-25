@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    :root {
+      --bg: #0a0a0c;
+      --surface: #16171a;
+      --text: #f4f4f6;
+      --text-muted: #a1a1a6;
+      --text-dim: #6e6e73;
+      --accent: #ff453a;
+      --border: rgba(255, 255, 255, 0.10);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+      background: radial-gradient(ellipse 800px 600px at 75% 30%, #1d1e24 0%, #0a0a0c 70%);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 72px 80px 56px;
+      position: relative;
+      -webkit-font-smoothing: antialiased;
+    }
+    .top {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+    }
+    .icon {
+      width: 200px;
+      height: 200px;
+      border-radius: 44px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.65), 0 4px 12px rgba(0,0,0,0.4);
+      flex-shrink: 0;
+    }
+    .text-block { flex: 1; }
+    .brand {
+      font-size: 104px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+    .tagline {
+      font-size: 40px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      color: var(--text);
+    }
+    .bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+    .slogan {
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text-muted);
+    }
+    .accent-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-right: 12px;
+      vertical-align: middle;
+      transform: translateY(-2px);
+    }
+    .url {
+      font-size: 20px;
+      color: var(--text-dim);
+      letter-spacing: 0.02em;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="top">
+    <img class="icon" src="og-image.png" alt="">
+    <div class="text-block">
+      <div class="brand">Umbric</div>
+      <div class="tagline">Leaves no trace.<br>Shows nothing.</div>
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="slogan"><span class="accent-dot"></span>An iOS privacy browser.</div>
+    <div class="url">mrcy.jp/umbric</div>
+  </div>
+</body>
+</html>
