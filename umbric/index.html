@@ -219,46 +219,18 @@
     }
     .axis p { font-size: 14px; color: var(--text-muted); margin: 0; }
 
-    /* Gallery (screenshots) */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      max-width: 760px;
+    /* Showcase (isometric hero image) */
+    .showcase {
+      padding: 8px 24px 64px;
+      text-align: center;
+      background: var(--bg);
+    }
+    .showcase img {
+      display: block;
+      width: 100%;
+      max-width: 1080px;
+      height: auto;
       margin: 0 auto;
-    }
-    .phone {
-      background: #1c1c1e;
-      border-radius: 38px;
-      padding: 10px;
-      border: 1px solid var(--border-strong);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-      aspect-ratio: 9 / 19.5;
-    }
-    .phone-screen {
-      background: var(--surface-2);
-      border-radius: 28px;
-      overflow: hidden;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .phone-screen img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-    }
-    .phone-placeholder {
-      color: var(--text-dim);
-      font-size: 12px;
-      padding: 16px;
-      text-align: center;
-    }
-    .phone-caption {
-      text-align: center;
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 14px;
     }
 
     /* Features */
@@ -444,12 +416,9 @@
       section { padding: 56px 0; }
       .use-cases-grid,
       .feature-highlights { grid-template-columns: 1fr; }
-      .gallery-grid {
-        grid-template-columns: 1fr;
-        max-width: 320px;
-      }
       .axes { grid-template-columns: 1fr; }
       .other-features { grid-template-columns: 1fr; }
+      .showcase { padding: 0 16px 40px; }
     }
   </style>
 </head>
@@ -475,6 +444,10 @@
       <p class="cta-note">App Store で公開中。iOS 26.0 以降。</p>
     </div>
   </header>
+
+  <div class="showcase">
+    <img src="./assets/iphone_isometric.svg" alt="Umbric を起動した iPhone" loading="lazy">
+  </div>
 
   <section>
     <div class="wrap">
@@ -512,39 +485,6 @@
         <div class="axis">
           <h3>見せない</h3>
           <p>覗き見・画面を渡す一瞬・偽装を想定した、能動的に「見せない」設計。バックグラウンドに移した瞬間、画面は自動でカモフラージュされます。</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <h2>アプリ画面</h2>
-      <p class="section-lede">通常のブラウザ操作のなかに、自然に組み込まれた防御。</p>
-      <div class="gallery-grid">
-        <div>
-          <div class="phone">
-            <div class="phone-screen">
-              <img src="./assets/screenshots/ja/01-home.png" alt="Umbric のホーム画面" loading="lazy" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=\'phone-placeholder\'>ホーム画面</span>');">
-            </div>
-          </div>
-          <p class="phone-caption">ホーム / 通常ブラウジング</p>
-        </div>
-        <div>
-          <div class="phone">
-            <div class="phone-screen">
-              <img src="./assets/screenshots/ja/02-camouflage.png" alt="バックグラウンド時のカモフラージュ画面" loading="lazy" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=\'phone-placeholder\'>カモフラージュ</span>');">
-            </div>
-          </div>
-          <p class="phone-caption">バックグラウンドで自動カモフラ</p>
-        </div>
-        <div>
-          <div class="phone">
-            <div class="phone-screen">
-              <img src="./assets/screenshots/ja/03-wipe.png" alt="赤シールドのワンタップ消去画面" loading="lazy" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=\'phone-placeholder\'>ワンタップ消去</span>');">
-            </div>
-          </div>
-          <p class="phone-caption">赤シールドで一括消去</p>
         </div>
       </div>
     </div>
