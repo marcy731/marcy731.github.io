@@ -9,6 +9,7 @@
   <meta name="theme-color" content="#0a0a0c">
   <meta name="robots" content="index,follow">
   <meta name="format-detection" content="telephone=no">
+  <meta name="apple-itunes-app" content="app-id=6742196922">
 
   <link rel="canonical" href="https://mrcy.jp/umbric/">
   <link rel="alternate" hreflang="ja" href="https://mrcy.jp/umbric/">
@@ -33,10 +34,6 @@
   <meta name="twitter:site" content="@marcy731">
   <meta name="twitter:creator" content="@marcy731">
 
-  <!-- TODO: Apple が App Store ID を発行したら apple-itunes-app メタを追加して
-       Smart App Banner を有効化。例:
-       <meta name="apple-itunes-app" content="app-id=XXXXXXXXX"> -->
-
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -48,6 +45,7 @@
     "applicationSubCategory": "Browser",
     "operatingSystem": "iOS 26.0 or later",
     "url": "https://mrcy.jp/umbric/",
+    "downloadUrl": "https://apps.apple.com/app/umbric/id6742196922",
     "image": "https://mrcy.jp/umbric/assets/og-image.png",
     "inLanguage": ["ja", "en", "de", "fr", "es", "it", "ko", "zh-Hans", "zh-Hant", "vi", "hi", "th"],
     "author": {
@@ -87,106 +85,307 @@
       background: var(--bg);
       -webkit-font-smoothing: antialiased;
     }
-    .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+    .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
 
     header {
-      padding: 80px 0 56px;
+      padding: 80px 0 64px;
       text-align: center;
-      background: linear-gradient(180deg, #16171a 0%, #0a0a0c 100%);
+      background: radial-gradient(ellipse at center top, #1c1d22 0%, #0a0a0c 60%);
     }
     .icon {
-      width: 96px; height: 96px;
-      border-radius: 22px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 2px 6px rgba(0,0,0,0.3);
-      margin-bottom: 24px;
+      width: 112px; height: 112px;
+      border-radius: 26px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.6), 0 2px 6px rgba(0,0,0,0.3);
+      margin-bottom: 28px;
     }
     h1 {
-      font-size: 32px;
+      font-size: 40px;
       font-weight: 700;
-      letter-spacing: -0.02em;
-      margin: 0 0 8px;
+      letter-spacing: -0.03em;
+      margin: 0 0 12px;
     }
     .hero-copy {
       font-size: 22px;
       font-weight: 600;
       letter-spacing: -0.01em;
-      margin: 16px 0 8px;
+      margin: 0 0 8px;
     }
     .slogan {
       font-size: 17px;
       color: var(--text-muted);
-      margin: 0 0 32px;
+      margin: 0 0 36px;
     }
     .ctas {
       display: inline-flex;
       gap: 12px;
       flex-wrap: wrap;
       justify-content: center;
+      align-items: center;
     }
     .cta {
       display: inline-flex;
       align-items: center;
-      padding: 12px 22px;
-      border-radius: 999px;
-      font-size: 15px;
-      font-weight: 600;
       text-decoration: none;
       transition: transform .12s ease;
     }
-    .cta-primary { background: var(--text); color: var(--bg); }
-    .cta-primary:hover { transform: translateY(-1px); }
-    .cta-secondary { color: var(--text); border: 1px solid var(--border-strong); }
-    .cta-note { font-size: 13px; color: var(--text-muted); margin-top: 14px; }
+    .cta:hover { transform: translateY(-1px); }
+    .cta-appstore {
+      gap: 10px;
+      padding: 12px 22px;
+      border-radius: 14px;
+      background: var(--text);
+      color: var(--bg);
+    }
+    .cta-appstore svg { width: 26px; height: 26px; flex-shrink: 0; }
+    .cta-appstore .cta-label { display: flex; flex-direction: column; text-align: left; line-height: 1.15; }
+    .cta-appstore .cta-pretitle { font-size: 11px; font-weight: 500; opacity: 0.7; }
+    .cta-appstore .cta-title { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
+    .cta-secondary {
+      padding: 14px 22px;
+      border-radius: 999px;
+      color: var(--text);
+      border: 1px solid var(--border-strong);
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .cta-note { font-size: 13px; color: var(--text-muted); margin-top: 18px; }
     .cta-note a { color: var(--link); text-decoration: none; }
 
-    section { padding: 56px 0; border-top: 1px solid var(--border); }
+    section { padding: 72px 0; border-top: 1px solid var(--border); }
     h2 {
-      font-size: 22px;
+      font-size: 28px;
       font-weight: 700;
-      letter-spacing: -0.01em;
-      margin: 0 0 24px;
+      letter-spacing: -0.02em;
+      margin: 0 0 8px;
+      text-align: center;
+    }
+    .section-lede {
+      font-size: 15px;
+      color: var(--text-muted);
+      text-align: center;
+      margin: 0 auto 40px;
+      max-width: 560px;
     }
 
+    /* Use cases */
+    .use-cases-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .use-case {
+      padding: 28px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+    .use-case .scene-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+    .use-case h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin: 0 0 10px;
+      letter-spacing: -0.01em;
+    }
+    .use-case p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    /* Axes */
     .axes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .axis {
-      padding: 24px;
+      padding: 28px;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 16px;
     }
     .axis h3 {
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 700;
-      margin: 0 0 8px;
+      margin: 0 0 10px;
       letter-spacing: -0.01em;
     }
     .axis p { font-size: 14px; color: var(--text-muted); margin: 0; }
-    @media (max-width: 560px) {
-      .axes { grid-template-columns: 1fr; }
+
+    /* Gallery (screenshots) */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .phone {
+      background: #1c1c1e;
+      border-radius: 38px;
+      padding: 10px;
+      border: 1px solid var(--border-strong);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      aspect-ratio: 9 / 19.5;
+    }
+    .phone-screen {
+      background: var(--surface-2);
+      border-radius: 28px;
+      overflow: hidden;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .phone-screen img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .phone-placeholder {
+      color: var(--text-dim);
+      font-size: 12px;
+      padding: 16px;
+      text-align: center;
+    }
+    .phone-caption {
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 14px;
     }
 
-    .features { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 24px; }
-    .features li {
+    /* Features */
+    .feature-highlights {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .feature-highlight {
+      padding: 28px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+    .feature-highlight .accent-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+      margin-bottom: 14px;
+    }
+    .feature-highlight h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin: 0 0 10px;
+      letter-spacing: -0.01em;
+    }
+    .feature-highlight p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+    .other-features-title {
+      font-size: 13px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 0 0 16px;
+      text-align: center;
+    }
+    .other-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 32px;
+      padding: 0;
+      margin: 0 auto;
+      max-width: 720px;
+    }
+    .other-features li {
       list-style: none;
-      padding: 14px 0 14px 24px;
+      padding: 12px 0 12px 20px;
       position: relative;
-      font-size: 15px;
+      font-size: 14px;
       color: var(--text-muted);
       border-bottom: 1px solid var(--border);
     }
-    .features li::before {
+    .other-features li::before {
       content: "";
       position: absolute;
-      left: 0; top: 22px;
-      width: 6px; height: 6px;
+      left: 0; top: 19px;
+      width: 5px; height: 5px;
       border-radius: 50%;
-      background: var(--accent);
-    }
-    .features ul { padding: 0; margin: 0; }
-    @media (max-width: 560px) {
-      .features { grid-template-columns: 1fr; }
+      background: var(--text-dim);
     }
 
+    /* Why */
+    .why {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .why p {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin: 0 0 16px;
+      line-height: 1.8;
+    }
+    .why .signature {
+      font-size: 14px;
+      color: var(--text-dim);
+      margin-top: 24px;
+    }
+
+    /* FAQ */
+    .faq-list {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .faq-list details {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+    .faq-list summary {
+      padding: 18px 22px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 15px;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .faq-list summary::-webkit-details-marker { display: none; }
+    .faq-list summary::after {
+      content: "+";
+      color: var(--text-muted);
+      font-size: 20px;
+      font-weight: 400;
+      flex-shrink: 0;
+      transition: transform .15s ease;
+    }
+    .faq-list details[open] summary::after { content: "−"; }
+    .faq-list .faq-answer {
+      padding: 0 22px 18px;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    /* About */
+    .about {
+      max-width: 640px;
+      margin: 0 auto;
+    }
     .about p {
       font-size: 15px;
       color: var(--text-muted);
@@ -198,6 +397,24 @@
       color: var(--text);
       letter-spacing: -0.01em;
       margin-top: 24px;
+      text-align: center;
+    }
+
+    /* Final CTA */
+    .final-cta {
+      text-align: center;
+      padding: 80px 24px;
+      background: radial-gradient(ellipse at center, #1c1d22 0%, #0a0a0c 70%);
+      border-top: 1px solid var(--border);
+    }
+    .final-cta h2 {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+    .final-cta p {
+      color: var(--text-muted);
+      font-size: 15px;
+      margin: 0 0 28px;
     }
 
     footer {
@@ -207,33 +424,85 @@
       color: var(--text-dim);
     }
     footer .links {
-      display: flex; gap: 20px; flex-wrap: wrap;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
       margin-bottom: 24px;
+      justify-content: center;
     }
     footer a { color: var(--text-muted); text-decoration: none; }
     footer a:hover { color: var(--text); }
+    footer p { text-align: center; margin: 4px 0; }
     .lang { margin-top: 16px; }
     .lang a { color: var(--link); }
+
+    @media (max-width: 720px) {
+      h1 { font-size: 32px; }
+      h2 { font-size: 24px; }
+      .hero-copy { font-size: 19px; }
+      section { padding: 56px 0; }
+      .use-cases-grid,
+      .feature-highlights { grid-template-columns: 1fr; }
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        max-width: 320px;
+      }
+      .axes { grid-template-columns: 1fr; }
+      .other-features { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="wrap">
-      <img class="icon" src="./assets/og-image.png" alt="Umbric アプリアイコン" width="96" height="96">
+      <img class="icon" src="./assets/og-image.png" alt="Umbric アプリアイコン" width="112" height="112">
       <h1>Umbric</h1>
       <p class="hero-copy">痕跡を残さず、見せないブラウザ</p>
       <p class="slogan">残さない。見せない。</p>
       <div class="ctas">
-        <a class="cta cta-primary" href="#features">機能を見る</a>
-        <a class="cta cta-secondary" href="./support/">お問い合わせ</a>
+        <a class="cta cta-appstore" href="https://apps.apple.com/app/umbric/id6742196922">
+          <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true">
+            <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+          </svg>
+          <span class="cta-label">
+            <span class="cta-pretitle">Download on the</span>
+            <span class="cta-title">App Store</span>
+          </span>
+        </a>
+        <a class="cta cta-secondary" href="#features">機能を見る</a>
       </div>
-      <p class="cta-note">App Store 公開準備中。最新情報は <a href="https://x.com/marcy731">@marcy731</a> でお知らせします。</p>
+      <p class="cta-note">App Store で公開中。最新情報は <a href="https://x.com/marcy731">@marcy731</a> で。</p>
     </div>
   </header>
 
   <section>
     <div class="wrap">
+      <h2>こんなときに</h2>
+      <p class="section-lede">日常のなかの「見られたくない」瞬間を、設定なしで守る。</p>
+      <div class="use-cases-grid">
+        <div class="use-case">
+          <span class="scene-tag">電車・カフェ</span>
+          <h3>隣に人が来た瞬間に</h3>
+          <p>視線を感じてホーム画面に戻すだけで、Umbric は自動で画面をカモフラージュ。タスク切替の一覧にも実画面は残りません。</p>
+        </div>
+        <div class="use-case">
+          <span class="scene-tag">端末を渡すとき</span>
+          <h3>"ちょっと見せて"に</h3>
+          <p>家族や友人に端末を渡しても、内緒モードのタブ・履歴・ブックマークは Face ID の中。通常モードだけが見える状態に保てます。</p>
+        </div>
+        <div class="use-case">
+          <span class="scene-tag">検索を残したくない</span>
+          <h3>調べものの後に</h3>
+          <p>赤シールドをワンタップで、Cookie・履歴・キャッシュ・最近閉じたタブを一括消去。セッション間にも自動で残りません。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
       <h2>2 つの軸で守る</h2>
+      <p class="section-lede">"残さない" と "見せない" は別の問題。Umbric はその両方を初期状態で守ります。</p>
       <div class="axes">
         <div class="axis">
           <h3>痕跡を残さない</h3>
@@ -247,17 +516,68 @@
     </div>
   </section>
 
+  <section>
+    <div class="wrap">
+      <h2>アプリ画面</h2>
+      <p class="section-lede">通常のブラウザ操作のなかに、自然に組み込まれた防御。</p>
+      <div class="gallery-grid">
+        <div>
+          <div class="phone">
+            <div class="phone-screen">
+              <img src="./assets/screenshots/ja/01-home.png" alt="Umbric のホーム画面" loading="lazy" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=\'phone-placeholder\'>ホーム画面</span>');">
+            </div>
+          </div>
+          <p class="phone-caption">ホーム / 通常ブラウジング</p>
+        </div>
+        <div>
+          <div class="phone">
+            <div class="phone-screen">
+              <img src="./assets/screenshots/ja/02-camouflage.png" alt="バックグラウンド時のカモフラージュ画面" loading="lazy" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=\'phone-placeholder\'>カモフラージュ</span>');">
+            </div>
+          </div>
+          <p class="phone-caption">バックグラウンドで自動カモフラ</p>
+        </div>
+        <div>
+          <div class="phone">
+            <div class="phone-screen">
+              <img src="./assets/screenshots/ja/03-wipe.png" alt="赤シールドのワンタップ消去画面" loading="lazy" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=\'phone-placeholder\'>ワンタップ消去</span>');">
+            </div>
+          </div>
+          <p class="phone-caption">赤シールドで一括消去</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="features">
     <div class="wrap">
       <h2>主な機能</h2>
-      <ul class="features">
+      <p class="section-lede">3 つの中心機能 + 細部まで作り込まれた防御層。</p>
+      <div class="feature-highlights">
+        <div class="feature-highlight">
+          <span class="accent-dot"></span>
+          <h3>自動カモフラージュ</h3>
+          <p>バックグラウンド遷移と同時に、現在のページは別のダミー表示に置き換わります。覗き見・タスク切替・スクリーンショットへの一次防御。</p>
+        </div>
+        <div class="feature-highlight">
+          <span class="accent-dot"></span>
+          <h3>ワンタップ一括消去</h3>
+          <p>アドレスバー横の赤シールドで、タブ・最近閉じたタブ・Cookie・キャッシュ・履歴を範囲指定で一気に削除できます。</p>
+        </div>
+        <div class="feature-highlight">
+          <span class="accent-dot"></span>
+          <h3>Face ID 内緒モード</h3>
+          <p>通常モードと完全に分離された、Face ID 保護下の独立した閲覧領域。タブ・履歴・ブックマークもそれぞれ別管理。</p>
+        </div>
+      </div>
+
+      <p class="other-features-title">その他の機能</p>
+      <ul class="other-features">
         <li>Cookie・キャッシュを非永続化（セッション間に残らない）</li>
         <li>閲覧履歴は端末内のみ、外部送信なし</li>
-        <li>Face ID 保護の「内緒モード」で閲覧領域を分離</li>
         <li>広告とトラッカーを 2 段階でブロック</li>
         <li>指紋採取（Fingerprinting）対策スクリプト内蔵</li>
         <li>HTTPS 強制 / JS ダイアログ遮断</li>
-        <li>ワンタップ消去で履歴・Cookie を範囲指定削除</li>
         <li>Focus フィルター連携で内緒モードを自動切替</li>
         <li>最近閉じたタブの復元 / リーダーモード</li>
         <li>動画ダウンロード / ページ内検索</li>
@@ -265,14 +585,86 @@
     </div>
   </section>
 
-  <section class="about">
+  <section>
     <div class="wrap">
-      <h2>名前について</h2>
-      <p>"Umbric"（アンブリック）は、ラテン語の Umbra（影）と Trick（さりげない手立て）から生まれた造語。画面の隣にあっても出しゃばらず、見られそうな瞬間にはさっと姿を隠して、自分のプライバシーを自分の手で守る——そのコンセプトをそのまま体験にしたブラウザです。</p>
-      <p>痕跡を残さないのは、誰かを欺くためではなく、自分のプライベートを自分で守るためです。</p>
-      <p class="closing">残さない。見せない。— Umbric。</p>
+      <h2>なぜ作ったか</h2>
+      <div class="why">
+        <p>プライベートな検索を、誰にも見られず、誰にも保存されないまま終わらせたかった。</p>
+        <p>既存のブラウザにも「プライベートタブ」や「履歴削除」はある。けれどそれらは "毎回意識する" 操作で、忘れた瞬間に痕跡は残る。さらに、設定では守れない領域がある——隣に座った人の視線、家族に端末を渡す一瞬、App Switcher に映る画面。</p>
+        <p>Umbric は "残さない・見せない" を初期状態にした iOS ブラウザです。Apple 純正のプライバシー保護機能を最大限活用しつつ、覗き見・端末共有・偽装といった "物理的に見られる" 状況にも能動的に対応します。</p>
+        <p class="signature">— Masashi Hasegawa</p>
+      </div>
     </div>
   </section>
+
+  <section>
+    <div class="wrap">
+      <h2>よくある質問</h2>
+      <div class="faq-list">
+        <details>
+          <summary>Safari のプライベートタブと何が違いますか？</summary>
+          <div class="faq-answer">
+            Safari Private は履歴を残さないだけです。Umbric はそれに加えて、バックグラウンド時の自動カモフラージュ、Face ID で守られた内緒モード、ネットワーク層と DOM 層の 2 段階ブロック、Canvas / WebGL / AudioContext レベルの指紋採取対策、ワンタップ範囲指定消去など、能動的な防御層を備えています。
+          </div>
+        </details>
+        <details>
+          <summary>本当に追跡されない？</summary>
+          <div class="faq-answer">
+            Cookie・キャッシュ・Web ストレージはセッション間に残しません。閲覧履歴は端末内のみで、外部への送信はゼロです。広告ネットワークによるフィンガープリンティングも、Canvas / WebGL / AudioContext / Navigator など複数のレイヤーで抑制しています。
+          </div>
+        </details>
+        <details>
+          <summary>バックグラウンドカモフラージュって何ですか？</summary>
+          <div class="faq-answer">
+            アプリをホーム画面に戻したり、App Switcher を開いた瞬間、現在のページが別のダミー画面に自動で置き換わる機能です。覗き見・ショルダーハッキング・他人に端末を渡したときの一次防御として機能します。
+          </div>
+        </details>
+        <details>
+          <summary>内緒モードと通常モードは何が違いますか？</summary>
+          <div class="faq-answer">
+            内緒モードは Face ID で保護された、完全に独立した閲覧領域です。タブ・履歴・ブックマークも通常モードとは別管理。Focus フィルターと連携させれば、特定の集中モードに入ったときだけ自動で切り替えることもできます。
+          </div>
+        </details>
+        <details>
+          <summary>個人開発のアプリで信頼できますか？</summary>
+          <div class="faq-answer">
+            Umbric は外部サーバーへのユーザーデータ送信を一切行いません。すべての処理は端末内で完結します。送信先・保持期間・取得情報の範囲は <a href="./privacy-policy/">プライバシーポリシー</a> で明示しています。
+          </div>
+        </details>
+        <details>
+          <summary>価格は？</summary>
+          <div class="faq-answer">
+            基本機能は無料でお使いいただけます。今後、より高度な機能を Freemium モデルで段階的に追加していく予定です。
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>名前について</h2>
+      <div class="about">
+        <p>"Umbric"（アンブリック）は、ラテン語の Umbra（影）と Trick（さりげない手立て）から生まれた造語。画面の隣にあっても出しゃばらず、見られそうな瞬間にはさっと姿を隠して、自分のプライバシーを自分の手で守る——そのコンセプトをそのまま体験にしたブラウザです。</p>
+        <p>痕跡を残さないのは、誰かを欺くためではなく、自分のプライベートを自分で守るためです。</p>
+        <p class="closing">残さない。見せない。— Umbric。</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="final-cta">
+    <h2>今すぐ、痕跡を残さないブラウジングを。</h2>
+    <p>App Store で無料ダウンロード。iOS 26.0 以降。</p>
+    <a class="cta cta-appstore" href="https://apps.apple.com/app/umbric/id6742196922">
+      <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true">
+        <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+      </svg>
+      <span class="cta-label">
+        <span class="cta-pretitle">Download on the</span>
+        <span class="cta-title">App Store</span>
+      </span>
+    </a>
+  </div>
 
   <footer>
     <div class="wrap">
@@ -280,6 +672,7 @@
         <a href="./privacy-policy/">プライバシーポリシー</a>
         <a href="./terms-of-use/">利用規約</a>
         <a href="./support/">お問い合わせ</a>
+        <a href="https://x.com/marcy731">@marcy731</a>
       </div>
       <p>© 2026 Masashi Hasegawa</p>
       <p class="lang"><a href="./en/">English</a></p>

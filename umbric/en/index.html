@@ -9,6 +9,7 @@
   <meta name="theme-color" content="#0a0a0c">
   <meta name="robots" content="index,follow">
   <meta name="format-detection" content="telephone=no">
+  <meta name="apple-itunes-app" content="app-id=6742196922">
 
   <link rel="canonical" href="https://mrcy.jp/umbric/en/">
   <link rel="alternate" hreflang="ja" href="https://mrcy.jp/umbric/">
@@ -33,9 +34,6 @@
   <meta name="twitter:site" content="@marcy731">
   <meta name="twitter:creator" content="@marcy731">
 
-  <!-- TODO: Once Apple issues an App Store ID, enable Smart App Banner:
-       <meta name="apple-itunes-app" content="app-id=XXXXXXXXX"> -->
-
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -47,6 +45,7 @@
     "applicationSubCategory": "Browser",
     "operatingSystem": "iOS 26.0 or later",
     "url": "https://mrcy.jp/umbric/en/",
+    "downloadUrl": "https://apps.apple.com/app/umbric/id6742196922",
     "image": "https://mrcy.jp/umbric/assets/og-image.png",
     "inLanguage": ["en", "ja", "de", "fr", "es", "it", "ko", "zh-Hans", "zh-Hant", "vi", "hi", "th"],
     "author": {
@@ -86,106 +85,300 @@
       background: var(--bg);
       -webkit-font-smoothing: antialiased;
     }
-    .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+    .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
 
     header {
-      padding: 80px 0 56px;
+      padding: 80px 0 64px;
       text-align: center;
-      background: linear-gradient(180deg, #16171a 0%, #0a0a0c 100%);
+      background: radial-gradient(ellipse at center top, #1c1d22 0%, #0a0a0c 60%);
     }
     .icon {
-      width: 96px; height: 96px;
-      border-radius: 22px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 2px 6px rgba(0,0,0,0.3);
-      margin-bottom: 24px;
+      width: 112px; height: 112px;
+      border-radius: 26px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.6), 0 2px 6px rgba(0,0,0,0.3);
+      margin-bottom: 28px;
     }
     h1 {
-      font-size: 32px;
+      font-size: 40px;
       font-weight: 700;
-      letter-spacing: -0.02em;
-      margin: 0 0 8px;
+      letter-spacing: -0.03em;
+      margin: 0 0 12px;
     }
     .hero-copy {
       font-size: 22px;
       font-weight: 600;
       letter-spacing: -0.01em;
-      margin: 16px 0 8px;
+      margin: 0 0 8px;
     }
     .slogan {
       font-size: 17px;
       color: var(--text-muted);
-      margin: 0 0 32px;
+      margin: 0 0 36px;
     }
     .ctas {
       display: inline-flex;
       gap: 12px;
       flex-wrap: wrap;
       justify-content: center;
+      align-items: center;
     }
     .cta {
       display: inline-flex;
       align-items: center;
-      padding: 12px 22px;
-      border-radius: 999px;
-      font-size: 15px;
-      font-weight: 600;
       text-decoration: none;
       transition: transform .12s ease;
     }
-    .cta-primary { background: var(--text); color: var(--bg); }
-    .cta-primary:hover { transform: translateY(-1px); }
-    .cta-secondary { color: var(--text); border: 1px solid var(--border-strong); }
-    .cta-note { font-size: 13px; color: var(--text-muted); margin-top: 14px; }
+    .cta:hover { transform: translateY(-1px); }
+    .cta-appstore {
+      gap: 10px;
+      padding: 12px 22px;
+      border-radius: 14px;
+      background: var(--text);
+      color: var(--bg);
+    }
+    .cta-appstore svg { width: 26px; height: 26px; flex-shrink: 0; }
+    .cta-appstore .cta-label { display: flex; flex-direction: column; text-align: left; line-height: 1.15; }
+    .cta-appstore .cta-pretitle { font-size: 11px; font-weight: 500; opacity: 0.7; }
+    .cta-appstore .cta-title { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
+    .cta-secondary {
+      padding: 14px 22px;
+      border-radius: 999px;
+      color: var(--text);
+      border: 1px solid var(--border-strong);
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .cta-note { font-size: 13px; color: var(--text-muted); margin-top: 18px; }
     .cta-note a { color: var(--link); text-decoration: none; }
 
-    section { padding: 56px 0; border-top: 1px solid var(--border); }
+    section { padding: 72px 0; border-top: 1px solid var(--border); }
     h2 {
-      font-size: 22px;
+      font-size: 28px;
       font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 0 0 8px;
+      text-align: center;
+    }
+    .section-lede {
+      font-size: 15px;
+      color: var(--text-muted);
+      text-align: center;
+      margin: 0 auto 40px;
+      max-width: 560px;
+    }
+
+    .use-cases-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .use-case {
+      padding: 28px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+    .use-case .scene-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      letter-spacing: 0.02em;
+    }
+    .use-case h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin: 0 0 10px;
       letter-spacing: -0.01em;
-      margin: 0 0 24px;
+    }
+    .use-case p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin: 0;
     }
 
     .axes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .axis {
-      padding: 24px;
+      padding: 28px;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 16px;
     }
     .axis h3 {
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 700;
-      margin: 0 0 8px;
+      margin: 0 0 10px;
       letter-spacing: -0.01em;
     }
     .axis p { font-size: 14px; color: var(--text-muted); margin: 0; }
-    @media (max-width: 560px) {
-      .axes { grid-template-columns: 1fr; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .phone {
+      background: #1c1c1e;
+      border-radius: 38px;
+      padding: 10px;
+      border: 1px solid var(--border-strong);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      aspect-ratio: 9 / 19.5;
+    }
+    .phone-screen {
+      background: var(--surface-2);
+      border-radius: 28px;
+      overflow: hidden;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .phone-screen img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .phone-placeholder {
+      color: var(--text-dim);
+      font-size: 12px;
+      padding: 16px;
+      text-align: center;
+    }
+    .phone-caption {
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 14px;
     }
 
-    .features { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 24px; }
-    .features li {
+    .feature-highlights {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .feature-highlight {
+      padding: 28px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+    .feature-highlight .accent-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+      margin-bottom: 14px;
+    }
+    .feature-highlight h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin: 0 0 10px;
+      letter-spacing: -0.01em;
+    }
+    .feature-highlight p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+    .other-features-title {
+      font-size: 13px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 0 0 16px;
+      text-align: center;
+    }
+    .other-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 32px;
+      padding: 0;
+      margin: 0 auto;
+      max-width: 720px;
+    }
+    .other-features li {
       list-style: none;
-      padding: 14px 0 14px 24px;
+      padding: 12px 0 12px 20px;
       position: relative;
-      font-size: 15px;
+      font-size: 14px;
       color: var(--text-muted);
       border-bottom: 1px solid var(--border);
     }
-    .features li::before {
+    .other-features li::before {
       content: "";
       position: absolute;
-      left: 0; top: 22px;
-      width: 6px; height: 6px;
+      left: 0; top: 19px;
+      width: 5px; height: 5px;
       border-radius: 50%;
-      background: var(--accent);
-    }
-    .features ul { padding: 0; margin: 0; }
-    @media (max-width: 560px) {
-      .features { grid-template-columns: 1fr; }
+      background: var(--text-dim);
     }
 
+    .why {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .why p {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin: 0 0 16px;
+      line-height: 1.8;
+    }
+    .why .signature {
+      font-size: 14px;
+      color: var(--text-dim);
+      margin-top: 24px;
+    }
+
+    .faq-list {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .faq-list details {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+    .faq-list summary {
+      padding: 18px 22px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 15px;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .faq-list summary::-webkit-details-marker { display: none; }
+    .faq-list summary::after {
+      content: "+";
+      color: var(--text-muted);
+      font-size: 20px;
+      font-weight: 400;
+      flex-shrink: 0;
+    }
+    .faq-list details[open] summary::after { content: "−"; }
+    .faq-list .faq-answer {
+      padding: 0 22px 18px;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .about {
+      max-width: 640px;
+      margin: 0 auto;
+    }
     .about p {
       font-size: 15px;
       color: var(--text-muted);
@@ -197,6 +390,23 @@
       color: var(--text);
       letter-spacing: -0.01em;
       margin-top: 24px;
+      text-align: center;
+    }
+
+    .final-cta {
+      text-align: center;
+      padding: 80px 24px;
+      background: radial-gradient(ellipse at center, #1c1d22 0%, #0a0a0c 70%);
+      border-top: 1px solid var(--border);
+    }
+    .final-cta h2 {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+    .final-cta p {
+      color: var(--text-muted);
+      font-size: 15px;
+      margin: 0 0 28px;
     }
 
     footer {
@@ -206,33 +416,85 @@
       color: var(--text-dim);
     }
     footer .links {
-      display: flex; gap: 20px; flex-wrap: wrap;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
       margin-bottom: 24px;
+      justify-content: center;
     }
     footer a { color: var(--text-muted); text-decoration: none; }
     footer a:hover { color: var(--text); }
+    footer p { text-align: center; margin: 4px 0; }
     .lang { margin-top: 16px; }
     .lang a { color: var(--link); }
+
+    @media (max-width: 720px) {
+      h1 { font-size: 32px; }
+      h2 { font-size: 24px; }
+      .hero-copy { font-size: 19px; }
+      section { padding: 56px 0; }
+      .use-cases-grid,
+      .feature-highlights { grid-template-columns: 1fr; }
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        max-width: 320px;
+      }
+      .axes { grid-template-columns: 1fr; }
+      .other-features { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="wrap">
-      <img class="icon" src="../assets/og-image.png" alt="Umbric app icon" width="96" height="96">
+      <img class="icon" src="../assets/og-image.png" alt="Umbric app icon" width="112" height="112">
       <h1>Umbric</h1>
       <p class="hero-copy">Leaves no trace. Shows nothing.</p>
       <p class="slogan">No trace. Nothing shown.</p>
       <div class="ctas">
-        <a class="cta cta-primary" href="#features">See features</a>
-        <a class="cta cta-secondary" href="../support/">Contact</a>
+        <a class="cta cta-appstore" href="https://apps.apple.com/app/umbric/id6742196922">
+          <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true">
+            <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+          </svg>
+          <span class="cta-label">
+            <span class="cta-pretitle">Download on the</span>
+            <span class="cta-title">App Store</span>
+          </span>
+        </a>
+        <a class="cta cta-secondary" href="#features">See features</a>
       </div>
-      <p class="cta-note">App Store launch in preparation. Follow updates on <a href="https://x.com/marcy731">@marcy731</a>.</p>
+      <p class="cta-note">Available on the App Store. Follow updates on <a href="https://x.com/marcy731">@marcy731</a>.</p>
     </div>
   </header>
 
   <section>
     <div class="wrap">
+      <h2>When you need it</h2>
+      <p class="section-lede">Everyday moments when you don't want to be seen — protected by default.</p>
+      <div class="use-cases-grid">
+        <div class="use-case">
+          <span class="scene-tag">In public</span>
+          <h3>The moment a glance comes near</h3>
+          <p>Sense someone watching, send the app to background, and Umbric auto-camouflages the screen. Even the App Switcher preview is replaced.</p>
+        </div>
+        <div class="use-case">
+          <span class="scene-tag">Sharing the device</span>
+          <h3>"Let me see that for a sec"</h3>
+          <p>Hand your phone to family or a friend. Your Private Mode tabs, history, and bookmarks stay locked behind Face ID — only the regular space is visible.</p>
+        </div>
+        <div class="use-case">
+          <span class="scene-tag">Off the record</span>
+          <h3>After a private search</h3>
+          <p>Tap the red shield to wipe cookies, history, cache, and recently closed tabs at once. Nothing persists between sessions either, by default.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
       <h2>Two axes of protection</h2>
+      <p class="section-lede">"Leaving no trace" and "showing nothing" are different problems. Umbric handles both, by default.</p>
       <div class="axes">
         <div class="axis">
           <h3>Leaves no trace</h3>
@@ -246,17 +508,68 @@
     </div>
   </section>
 
+  <section>
+    <div class="wrap">
+      <h2>The app</h2>
+      <p class="section-lede">Active defense, woven naturally into ordinary browsing.</p>
+      <div class="gallery-grid">
+        <div>
+          <div class="phone">
+            <div class="phone-screen">
+              <img src="../assets/screenshots/en/01-home.png" alt="Umbric home screen" loading="lazy" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=\'phone-placeholder\'>Home</span>');">
+            </div>
+          </div>
+          <p class="phone-caption">Home / regular browsing</p>
+        </div>
+        <div>
+          <div class="phone">
+            <div class="phone-screen">
+              <img src="../assets/screenshots/en/02-camouflage.png" alt="Camouflaged background screen" loading="lazy" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=\'phone-placeholder\'>Camouflage</span>');">
+            </div>
+          </div>
+          <p class="phone-caption">Auto-camouflage on backgrounding</p>
+        </div>
+        <div>
+          <div class="phone">
+            <div class="phone-screen">
+              <img src="../assets/screenshots/en/03-wipe.png" alt="Red shield one-tap wipe" loading="lazy" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=\'phone-placeholder\'>One-tap wipe</span>');">
+            </div>
+          </div>
+          <p class="phone-caption">One-tap wipe via the red shield</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="features">
     <div class="wrap">
       <h2>Key features</h2>
-      <ul class="features">
+      <p class="section-lede">Three core moves, surrounded by a thoroughly engineered defense layer.</p>
+      <div class="feature-highlights">
+        <div class="feature-highlight">
+          <span class="accent-dot"></span>
+          <h3>Auto-camouflage</h3>
+          <p>The moment you switch away, the current page is replaced with a decoy view. First-line defense against shoulder surfing, App Switcher previews, and screenshots.</p>
+        </div>
+        <div class="feature-highlight">
+          <span class="accent-dot"></span>
+          <h3>One-tap wipe</h3>
+          <p>The red shield next to the address bar wipes tabs, recently closed tabs, cookies, cache, and history — by category — in a single action.</p>
+        </div>
+        <div class="feature-highlight">
+          <span class="accent-dot"></span>
+          <h3>Face ID Private Mode</h3>
+          <p>A fully separate browsing space behind Face ID. Tabs, history, and bookmarks are independently managed from the regular mode.</p>
+        </div>
+      </div>
+
+      <p class="other-features-title">More features</p>
+      <ul class="other-features">
         <li>Non-persistent storage for cookies, cache, and web storage</li>
         <li>Browsing history stays on-device, never sent externally</li>
-        <li>Face ID-protected Private Mode keeps a separate space</li>
         <li>Two-layer ad &amp; tracker blocking (network + DOM)</li>
         <li>Fingerprinting protection (Canvas, WebGL, AudioContext)</li>
         <li>HTTPS enforcement and JavaScript dialog blocking</li>
-        <li>One-tap wipe by category (history, cookies, cache, more)</li>
         <li>Focus Filter integration switches Private Mode automatically</li>
         <li>Recently closed tab restore and reader mode</li>
         <li>Video download and in-page search</li>
@@ -264,14 +577,86 @@
     </div>
   </section>
 
-  <section class="about">
+  <section>
     <div class="wrap">
-      <h2>About the name</h2>
-      <p>"Umbric" combines Umbra (Latin for shadow) with the idea of a deft, well-considered move. Sit beside you without taking up space, slip out of sight the moment a glance comes near — your privacy, kept by your own hand.</p>
-      <p>Leaving no trace isn't about deceiving anyone. It's about taking care of your own privacy.</p>
-      <p class="closing">No trace. Nothing shown. — Umbric.</p>
+      <h2>Why I built this</h2>
+      <div class="why">
+        <p>I wanted a private search to stay private — seen by no one, saved by no one.</p>
+        <p>Existing browsers offer "private tabs" and "clear history," but those are actions you have to remember every time. Forget once, and the trace remains. And there are areas no setting can cover — the person sitting next to you, the brief moment you hand your phone to family, the preview frame in the App Switcher.</p>
+        <p>Umbric is an iOS browser that makes "no trace, nothing shown" the default. It builds on Apple's own privacy machinery while actively responding to the physical situations where you can be seen.</p>
+        <p class="signature">— Masashi Hasegawa</p>
+      </div>
     </div>
   </section>
+
+  <section>
+    <div class="wrap">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <details>
+          <summary>How is this different from Safari Private Browsing?</summary>
+          <div class="faq-answer">
+            Safari Private only avoids leaving history. Umbric adds active defenses on top: automatic camouflage on backgrounding, a Face ID-protected Private Mode, two-layer (network + DOM) ad and tracker blocking, fingerprinting countermeasures across Canvas / WebGL / AudioContext, and one-tap scoped wipe.
+          </div>
+        </details>
+        <details>
+          <summary>Am I really not being tracked?</summary>
+          <div class="faq-answer">
+            Cookies, cache, and web storage are not persisted between sessions. Browsing history stays on-device only — never sent externally. Fingerprinting attempts are suppressed across multiple surfaces (Canvas, WebGL, AudioContext, Navigator).
+          </div>
+        </details>
+        <details>
+          <summary>What is background camouflage?</summary>
+          <div class="faq-answer">
+            The moment you send the app to the background or open the App Switcher, the current page is automatically replaced by a decoy view. It's a first-line defense against shoulder surfing and brief device hand-offs.
+          </div>
+        </details>
+        <details>
+          <summary>How does Private Mode differ from the regular mode?</summary>
+          <div class="faq-answer">
+            Private Mode is a completely separate browsing space, protected by Face ID. Tabs, history, and bookmarks are managed independently. You can also pair it with Focus Filters to switch in and out automatically based on the Focus you're in.
+          </div>
+        </details>
+        <details>
+          <summary>Can I trust a solo-developed app?</summary>
+          <div class="faq-answer">
+            Umbric does not send user data to any external server — everything is processed on-device. The destinations, retention windows, and scope of data collected are spelled out in the <a href="./privacy-policy/">Privacy Policy</a>.
+          </div>
+        </details>
+        <details>
+          <summary>How much does it cost?</summary>
+          <div class="faq-answer">
+            Core features are free. More advanced features will be added gradually under a Freemium model.
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>About the name</h2>
+      <div class="about">
+        <p>"Umbric" combines Umbra (Latin for shadow) with the idea of a deft, well-considered move. Sit beside you without taking up space, slip out of sight the moment a glance comes near — your privacy, kept by your own hand.</p>
+        <p>Leaving no trace isn't about deceiving anyone. It's about taking care of your own privacy.</p>
+        <p class="closing">No trace. Nothing shown. — Umbric.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="final-cta">
+    <h2>Start browsing without a trace.</h2>
+    <p>Free on the App Store. iOS 26.0 or later.</p>
+    <a class="cta cta-appstore" href="https://apps.apple.com/app/umbric/id6742196922">
+      <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true">
+        <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+      </svg>
+      <span class="cta-label">
+        <span class="cta-pretitle">Download on the</span>
+        <span class="cta-title">App Store</span>
+      </span>
+    </a>
+  </div>
 
   <footer>
     <div class="wrap">
@@ -279,6 +664,7 @@
         <a href="./privacy-policy/">Privacy Policy</a>
         <a href="./terms-of-use/">Terms of Use</a>
         <a href="../support/">Contact</a>
+        <a href="https://x.com/marcy731">@marcy731</a>
       </div>
       <p>© 2026 Masashi Hasegawa</p>
       <p class="lang"><a href="../">日本語</a></p>
