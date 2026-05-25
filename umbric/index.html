@@ -6,7 +6,7 @@
   <title>Umbric — 痕跡を残さず、見せないブラウザ</title>
   <meta name="description" content="Umbric は痕跡を残さず・見せない iOS ブラウザ。Cookie とキャッシュはセッション間に残さず、広告とトラッカーを 2 段階で遮断。バックグラウンド遷移と同時に画面を自動でカモフラージュし、ワンタップで閲覧データを一括消去します。">
   <meta name="keywords" content="Umbric, ブラウザ, プライバシー, 広告ブロック, カモフラージュ, 内緒モード, 履歴削除, トラッキング遮断, シークレット, iOS">
-  <meta name="theme-color" content="#1c1c1e">
+  <meta name="theme-color" content="#0a0a0c">
   <meta name="robots" content="index,follow">
   <meta name="format-detection" content="telephone=no">
 
@@ -65,26 +65,39 @@
   </script>
 
   <style>
+    :root {
+      --bg: #0a0a0c;
+      --surface: #16171a;
+      --surface-2: #1f2024;
+      --text: #f4f4f6;
+      --text-muted: #a1a1a6;
+      --text-dim: #6e6e73;
+      --accent: #ff453a;
+      --link: #0a84ff;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.16);
+    }
     *,*::before,*::after { box-sizing: border-box; }
     html { -webkit-text-size-adjust: 100%; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Sans", "Noto Sans JP", sans-serif;
       margin: 0;
-      color: #1c1c1e;
+      color: var(--text);
       line-height: 1.7;
-      background: #fafafa;
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
     }
     .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
 
     header {
       padding: 80px 0 56px;
       text-align: center;
-      background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+      background: linear-gradient(180deg, #16171a 0%, #0a0a0c 100%);
     }
     .icon {
       width: 96px; height: 96px;
       border-radius: 22px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.06);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 2px 6px rgba(0,0,0,0.3);
       margin-bottom: 24px;
     }
     h1 {
@@ -101,7 +114,7 @@
     }
     .slogan {
       font-size: 17px;
-      color: #3a3a3c;
+      color: var(--text-muted);
       margin: 0 0 32px;
     }
     .ctas {
@@ -120,12 +133,13 @@
       text-decoration: none;
       transition: transform .12s ease;
     }
-    .cta-primary { background: #1c1c1e; color: #fff; }
+    .cta-primary { background: var(--text); color: var(--bg); }
     .cta-primary:hover { transform: translateY(-1px); }
-    .cta-secondary { color: #1c1c1e; border: 1px solid #d1d1d6; }
-    .cta-note { font-size: 13px; color: #8e8e93; margin-top: 14px; }
+    .cta-secondary { color: var(--text); border: 1px solid var(--border-strong); }
+    .cta-note { font-size: 13px; color: var(--text-muted); margin-top: 14px; }
+    .cta-note a { color: var(--link); text-decoration: none; }
 
-    section { padding: 56px 0; border-top: 1px solid #ececef; }
+    section { padding: 56px 0; border-top: 1px solid var(--border); }
     h2 {
       font-size: 22px;
       font-weight: 700;
@@ -136,8 +150,8 @@
     .axes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .axis {
       padding: 24px;
-      background: #fff;
-      border: 1px solid #ececef;
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 16px;
     }
     .axis h3 {
@@ -146,7 +160,7 @@
       margin: 0 0 8px;
       letter-spacing: -0.01em;
     }
-    .axis p { font-size: 14px; color: #3a3a3c; margin: 0; }
+    .axis p { font-size: 14px; color: var(--text-muted); margin: 0; }
     @media (max-width: 560px) {
       .axes { grid-template-columns: 1fr; }
     }
@@ -157,8 +171,8 @@
       padding: 14px 0 14px 24px;
       position: relative;
       font-size: 15px;
-      color: #3a3a3c;
-      border-bottom: 1px solid #ececef;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
     }
     .features li::before {
       content: "";
@@ -166,7 +180,7 @@
       left: 0; top: 22px;
       width: 6px; height: 6px;
       border-radius: 50%;
-      background: #1c1c1e;
+      background: var(--accent);
     }
     .features ul { padding: 0; margin: 0; }
     @media (max-width: 560px) {
@@ -175,30 +189,31 @@
 
     .about p {
       font-size: 15px;
-      color: #3a3a3c;
+      color: var(--text-muted);
       margin: 0 0 16px;
     }
     .closing {
       font-size: 18px;
       font-weight: 600;
-      color: #1c1c1e;
+      color: var(--text);
       letter-spacing: -0.01em;
       margin-top: 24px;
     }
 
     footer {
       padding: 48px 0 64px;
-      border-top: 1px solid #ececef;
+      border-top: 1px solid var(--border);
       font-size: 13px;
-      color: #8e8e93;
+      color: var(--text-dim);
     }
     footer .links {
       display: flex; gap: 20px; flex-wrap: wrap;
       margin-bottom: 24px;
     }
-    footer a { color: #1c1c1e; text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
+    footer a { color: var(--text-muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
     .lang { margin-top: 16px; }
+    .lang a { color: var(--link); }
   </style>
 </head>
 <body>
@@ -209,10 +224,10 @@
       <p class="hero-copy">痕跡を残さず、見せないブラウザ</p>
       <p class="slogan">残さない。見せない。</p>
       <div class="ctas">
-        <a class="cta cta-primary" href="https://github.com/marcy731/Umbric">プロジェクトを見る</a>
-        <a class="cta cta-secondary" href="#features">機能を見る</a>
+        <a class="cta cta-primary" href="#features">機能を見る</a>
+        <a class="cta cta-secondary" href="./support/">お問い合わせ</a>
       </div>
-      <p class="cta-note">App Store 公開準備中。最新情報は GitHub と <a href="https://x.com/marcy731">@marcy731</a> でお知らせします。</p>
+      <p class="cta-note">App Store 公開準備中。最新情報は <a href="https://x.com/marcy731">@marcy731</a> でお知らせします。</p>
     </div>
   </header>
 
@@ -265,7 +280,6 @@
         <a href="./privacy-policy/">プライバシーポリシー</a>
         <a href="./terms-of-use/">利用規約</a>
         <a href="./support/">お問い合わせ</a>
-        <a href="https://github.com/marcy731/Umbric">GitHub</a>
       </div>
       <p>© 2026 Masashi Hasegawa</p>
       <p class="lang"><a href="./en/">English</a></p>
