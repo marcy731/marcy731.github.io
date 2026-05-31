@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Umbric — 痕跡を残さず、見せないブラウザ</title>
+  <meta name="description" content="Umbric は痕跡を残さず・見せない iOS ブラウザ。Cookie とキャッシュはセッション間に残さず、広告とトラッカーを 2 段階で遮断。バックグラウンド遷移と同時に画面を自動でカモフラージュし、ワンタップで閲覧データを一括消去します。">
+  <meta name="theme-color" content="#0a0a0c">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+  <style>
+    :root {
+      --bg: #0a0a0c;
+      --surface: #16171a;
+      --surface-2: #1f2024;
+      --text: #f4f4f6;
+      --text-muted: #a1a1a6;
+      --text-dim: #6e6e73;
+      --accent: #ff453a;
+      --accent-soft: rgba(255, 69, 58, 0.12);
+      --link: #0a84ff;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.16);
+      --radius: 18px;
+    }
+    *,*::before,*::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Sans", "Noto Sans JP", sans-serif;
+      margin: 0; color: var(--text); line-height: 1.7; background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        radial-gradient(60% 50% at 80% -5%, rgba(255,69,58,0.10), transparent 60%),
+        radial-gradient(55% 45% at 10% 5%, rgba(10,132,255,0.08), transparent 55%);
+      background-repeat: no-repeat;
+    }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+    a { color: inherit; }
+
+    /* ---------- Nav ---------- */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: saturate(160%) blur(18px);
+      -webkit-backdrop-filter: saturate(160%) blur(18px);
+      background: rgba(10,10,12,0.62);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: -0.02em; font-size: 18px; text-decoration: none; }
+    .brand img { width: 30px; height: 30px; border-radius: 8px; }
+    .nav-links { display: flex; gap: 26px; align-items: center; }
+    .nav-links a { text-decoration: none; font-size: 14px; color: var(--text-muted); font-weight: 500; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta { padding: 8px 16px; border-radius: 999px; background: var(--text); color: var(--bg) !important; font-weight: 600; font-size: 14px; }
+    @media (max-width: 720px) { .nav-links a:not(.nav-cta) { display: none; } }
+
+    /* ---------- Hero ---------- */
+    header { padding: 88px 0 40px; }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 40px; align-items: center; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
+      color: var(--text-muted); padding: 6px 14px; border-radius: 999px;
+      border: 1px solid var(--border-strong); background: rgba(255,255,255,0.02); margin-bottom: 24px;
+    }
+    .eyebrow .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 rgba(255,69,58,0.6); animation: pulse 2.4s infinite; }
+    @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(255,69,58,0.5);} 70%{box-shadow:0 0 0 10px rgba(255,69,58,0);} 100%{box-shadow:0 0 0 0 rgba(255,69,58,0);} }
+    h1 {
+      font-size: clamp(38px, 5.2vw, 52px); font-weight: 800; line-height: 1.08;
+      letter-spacing: -0.035em; margin: 0 0 20px;
+    }
+    h1 .grad { background: linear-gradient(100deg, #fff 0%, #ff8077 55%, var(--accent) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero-lede { font-size: 18px; color: var(--text-muted); max-width: 460px; margin: 0 0 32px; }
+    .ctas { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+    .cta { display: inline-flex; align-items: center; text-decoration: none; transition: transform .12s ease; }
+    .cta:hover { transform: translateY(-2px); }
+    .cta-appstore { gap: 10px; padding: 13px 22px; border-radius: 14px; background: var(--text); color: var(--bg); }
+    .cta-appstore svg { width: 26px; height: 26px; }
+    .cta-appstore .cta-label { display: flex; flex-direction: column; text-align: left; line-height: 1.15; }
+    .cta-appstore .cta-pretitle { font-size: 11px; font-weight: 500; opacity: 0.7; }
+    .cta-appstore .cta-title { font-size: 19px; font-weight: 700; letter-spacing: -0.01em; }
+    .cta-secondary { padding: 14px 22px; border-radius: 999px; color: var(--text); border: 1px solid var(--border-strong); font-size: 15px; font-weight: 600; }
+    .cta-note { font-size: 13px; color: var(--text-dim); margin-top: 18px; }
+
+    /* ---------- Phone demo ---------- */
+    .demo-stage { display: flex; justify-content: center; position: relative; }
+    .phone {
+      position: relative; width: 268px; aspect-ratio: 9/19.5;
+      border-radius: 44px; padding: 10px;
+      background: linear-gradient(160deg, #2a2b30, #0d0d0f);
+      box-shadow: 0 40px 90px rgba(0,0,0,0.65), 0 4px 12px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(255,255,255,0.06);
+    }
+    .screen { position: relative; width: 100%; height: 100%; border-radius: 35px; overflow: hidden; background: #000; }
+    .screen-layer { position: absolute; inset: 0; transition: opacity .45s ease; }
+    /* browsing screen */
+    .scr-browse { display: flex; flex-direction: column; background: #101114; }
+    .scr-statusbar { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px 8px; font-size: 11px; color: #fff; font-weight: 600; }
+    .scr-addr { margin: 4px 12px 10px; display: flex; align-items: center; gap: 8px; background: #1f2024; border-radius: 12px; padding: 9px 12px; }
+    .scr-addr .lock { width: 11px; height: 11px; border-radius: 3px; border: 2px solid #6e6e73; }
+    .scr-addr span { font-size: 11px; color: #a1a1a6; }
+    .scr-addr .shield { margin-left: auto; width: 18px; height: 18px; border-radius: 5px; background: var(--accent); }
+    .scr-body { flex: 1; padding: 6px 14px; overflow: hidden; }
+    .scr-line { height: 9px; border-radius: 5px; background: #26282d; margin: 10px 0; }
+    .scr-img { height: 78px; border-radius: 10px; background: linear-gradient(120deg,#23252b,#15161a); margin: 12px 0; }
+    .scr-tabbar { display: flex; justify-content: space-around; padding: 12px 0 18px; border-top: 1px solid rgba(255,255,255,0.06); }
+    .scr-tabbar i { width: 18px; height: 18px; border-radius: 5px; background: #3a3c42; display: block; }
+    /* camouflage screen — innocuous clock/weather */
+    .scr-camo { background: linear-gradient(170deg, #1b3a5b 0%, #0c1622 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #fff; opacity: 0; }
+    .scr-camo .camo-loc { font-size: 13px; letter-spacing: 0.04em; opacity: 0.85; }
+    .scr-camo .camo-temp { font-size: 64px; font-weight: 200; line-height: 1; }
+    .scr-camo .camo-cond { font-size: 13px; opacity: 0.8; margin-bottom: 18px; }
+    .scr-camo .camo-clock { font-size: 15px; opacity: 0.55; }
+    .phone[data-state="camo"] .scr-camo { opacity: 1; }
+    .phone[data-state="camo"] .scr-browse { opacity: 0; }
+    .demo-toggle {
+      position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%);
+      display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
+      padding: 11px 20px; border-radius: 999px; border: none; cursor: pointer;
+      background: var(--accent); color: #fff; font-weight: 700; font-size: 14px;
+      box-shadow: 0 12px 30px rgba(255,69,58,0.4);
+      font-family: inherit;
+    }
+    .demo-caption { position: absolute; top: -34px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 13px; color: var(--text-dim); }
+
+    /* ---------- Trust strip ---------- */
+    .strip { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .strip-inner { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 40px; padding: 22px 0; }
+    .strip-item { display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: var(--text-muted); font-weight: 500; }
+    .strip-item svg { width: 17px; height: 17px; color: var(--accent); }
+
+    /* ---------- Sections ---------- */
+    section { padding: 88px 0; }
+    .section-head { text-align: center; max-width: 620px; margin: 0 auto 48px; }
+    h2 { font-size: clamp(26px, 3.4vw, 34px); font-weight: 800; letter-spacing: -0.025em; margin: 0 0 12px; }
+    .section-lede { font-size: 16px; color: var(--text-muted); margin: 0; }
+    .kicker { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin: 0 0 10px; }
+
+    /* Use cases */
+    .use-cases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .use-case { padding: 30px 26px; background: linear-gradient(180deg, var(--surface), rgba(22,23,26,0.4)); border: 1px solid var(--border); border-radius: var(--radius); transition: border-color .2s, transform .2s; }
+    .use-case:hover { border-color: var(--border-strong); transform: translateY(-3px); }
+    .scene-tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 4px 11px; background: var(--accent-soft); border: 1px solid rgba(255,69,58,0.2); border-radius: 999px; color: #ff8077; margin-bottom: 16px; }
+    .use-case h3 { font-size: 18px; font-weight: 700; margin: 0 0 10px; letter-spacing: -0.01em; }
+    .use-case p { font-size: 14px; color: var(--text-muted); margin: 0; }
+
+    /* Axes — bold split */
+    .axes { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .axis { position: relative; padding: 40px 34px; border-radius: 22px; overflow: hidden; border: 1px solid var(--border); }
+    .axis-trace { background: radial-gradient(120% 100% at 0% 0%, rgba(10,132,255,0.16), transparent 60%), var(--surface); }
+    .axis-hide { background: radial-gradient(120% 100% at 100% 0%, rgba(255,69,58,0.16), transparent 60%), var(--surface); }
+    .axis .axis-num { font-size: 13px; font-weight: 700; color: var(--text-dim); letter-spacing: 0.1em; }
+    .axis h3 { font-size: 24px; font-weight: 800; margin: 6px 0 14px; letter-spacing: -0.02em; }
+    .axis p { font-size: 15px; color: var(--text-muted); margin: 0; }
+
+    /* Features */
+    .feature-highlights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 44px; }
+    .feature-highlight { padding: 30px 26px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+    .feat-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: var(--accent-soft); margin-bottom: 18px; }
+    .feat-icon svg { width: 22px; height: 22px; color: var(--accent); }
+    .feature-highlight h3 { font-size: 18px; font-weight: 700; margin: 0 0 10px; letter-spacing: -0.01em; }
+    .feature-highlight p { font-size: 14px; color: var(--text-muted); margin: 0; }
+    .other-features-title { font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 18px; text-align: center; }
+    .other-features { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 32px; padding: 0; margin: 0 auto; max-width: 760px; }
+    .other-features li { list-style: none; padding: 13px 0 13px 26px; position: relative; font-size: 14px; color: var(--text-muted); border-bottom: 1px solid var(--border); }
+    .other-features li::before { content: ""; position: absolute; left: 0; top: 17px; width: 14px; height: 14px; border-radius: 50%; background: var(--accent-soft); }
+    .other-features li::after { content: ""; position: absolute; left: 5px; top: 21px; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+
+    /* Pro */
+    .pro { position: relative; }
+    .pro-card { border-radius: 28px; padding: 64px 44px; border: 1px solid rgba(255,69,58,0.22); background: radial-gradient(100% 120% at 50% 0%, rgba(255,69,58,0.12), transparent 55%), linear-gradient(180deg, #18181b, #111114); }
+    .pro-badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 5px 13px; background: var(--accent); color: #fff; border-radius: 999px; letter-spacing: 0.1em; text-transform: uppercase; }
+    .pro-highlights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 40px 0 36px; }
+    .pro-feature { padding: 24px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 14px; }
+    .pro-feature h3 { font-size: 16px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.01em; }
+    .pro-feature p { font-size: 13.5px; color: var(--text-muted); margin: 0; }
+
+    /* Why */
+    .why { max-width: 660px; margin: 0 auto; }
+    .why p { font-size: 16px; color: var(--text-muted); margin: 0 0 16px; line-height: 1.85; }
+    .why .signature { font-size: 14px; color: var(--text-dim); margin-top: 24px; }
+
+    /* FAQ */
+    .faq-list { max-width: 760px; margin: 0 auto; }
+    .faq-list details { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 10px; overflow: hidden; }
+    .faq-list summary { padding: 19px 22px; cursor: pointer; font-weight: 600; font-size: 15px; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    .faq-list summary::-webkit-details-marker { display: none; }
+    .faq-list summary::after { content: "+"; color: var(--accent); font-size: 22px; font-weight: 300; flex-shrink: 0; }
+    .faq-list details[open] summary::after { content: "−"; }
+    .faq-list .faq-answer { padding: 0 22px 19px; font-size: 14px; color: var(--text-muted); line-height: 1.8; }
+
+    /* About */
+    .about { max-width: 660px; margin: 0 auto; }
+    .about p { font-size: 15px; color: var(--text-muted); margin: 0 0 16px; }
+    .closing { font-size: 20px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; margin-top: 26px; text-align: center; }
+
+    /* Final CTA */
+    .final-cta { text-align: center; border-radius: 28px; padding: 80px 24px; background: radial-gradient(ellipse at center, #20151a 0%, #0a0a0c 70%); border: 1px solid var(--border); }
+    .final-cta h2 { margin-bottom: 14px; }
+    .final-cta p { color: var(--text-muted); font-size: 15px; margin: 0 0 30px; }
+    .final-cta .ctas { justify-content: center; }
+
+    footer { padding: 56px 0 72px; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-dim); margin-top: 40px; }
+    footer .links { display: flex; gap: 22px; flex-wrap: wrap; margin-bottom: 22px; justify-content: center; }
+    footer a { color: var(--text-muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+    footer p { text-align: center; margin: 4px 0; }
+    .lang { margin-top: 16px; }
+    .lang a { color: var(--link); }
+
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 56px; }
+      .hero-lede { margin-left: auto; margin-right: auto; }
+      .ctas { justify-content: center; }
+      .eyebrow { margin-left: auto; margin-right: auto; }
+    }
+    @media (max-width: 720px) {
+      .use-cases-grid, .feature-highlights, .pro-highlights { grid-template-columns: 1fr; }
+      .axes { grid-template-columns: 1fr; }
+      .other-features { grid-template-columns: 1fr; }
+      section { padding: 64px 0; }
+      .pro-card { padding: 44px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top"><img src="./assets/og-image.png" alt="">Umbric</a>
+      <div class="nav-links">
+        <a href="#features">機能</a>
+        <a href="#pro">Pro</a>
+        <a href="#faq">FAQ</a>
+        <a class="nav-cta" href="https://apps.apple.com/app/umbric/id6742196922">入手</a>
+      </div>
+    </div>
+  </nav>
+
+  <header id="top">
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <span class="eyebrow"><span class="pulse"></span>iOS 26.0 以降・App Store で公開中</span>
+        <h1>痕跡を残さず、<br><span class="grad">見せない</span>ブラウザ。</h1>
+        <p class="hero-lede">隣の視線、端末を渡す一瞬、調べものの後。見られそうな瞬間に、設定なしで守れる iOS ブラウザ。</p>
+        <div class="ctas">
+          <a class="cta cta-appstore" href="https://apps.apple.com/app/umbric/id6742196922">
+            <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+            <span class="cta-label"><span class="cta-pretitle">Download on the</span><span class="cta-title">App Store</span></span>
+          </a>
+          <a class="cta cta-secondary" href="#features">機能を見る</a>
+        </div>
+        <p class="cta-note">無料ダウンロード。Pro は買い切り。サブスクなし。</p>
+      </div>
+
+      <div class="demo-stage">
+        <span class="demo-caption">タップして体験 ↓</span>
+        <div class="phone" id="phone" data-state="browse">
+          <div class="screen">
+            <div class="screen-layer scr-browse">
+              <div class="scr-statusbar"><span>9:41</span><span>● ● ●</span></div>
+              <div class="scr-addr"><span class="lock"></span><span>example.com</span><span class="shield"></span></div>
+              <div class="scr-body">
+                <div class="scr-line" style="width:70%"></div>
+                <div class="scr-img"></div>
+                <div class="scr-line" style="width:100%"></div>
+                <div class="scr-line" style="width:92%"></div>
+                <div class="scr-line" style="width:60%"></div>
+                <div class="scr-img" style="height:60px"></div>
+                <div class="scr-line" style="width:84%"></div>
+              </div>
+              <div class="scr-tabbar"><i></i><i></i><i></i><i></i></div>
+            </div>
+            <div class="screen-layer scr-camo">
+              <div class="camo-loc">Tokyo</div>
+              <div class="camo-temp">21°</div>
+              <div class="camo-cond">晴れ時々くもり</div>
+              <div class="camo-clock">9:41</div>
+            </div>
+          </div>
+        </div>
+        <button class="demo-toggle" id="toggle" onclick="document.getElementById('phone').dataset.state = document.getElementById('phone').dataset.state==='browse'?'camo':'browse'; this.textContent = document.getElementById('phone').dataset.state==='browse'?'バックグラウンドに移す':'元に戻す';">バックグラウンドに移す</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="strip">
+    <div class="wrap strip-inner">
+      <span class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg>Cookie・キャッシュ非永続</span>
+      <span class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3l18 18M10.6 10.6a2 2 0 002.8 2.8"/><path d="M12 5c5 0 9 5 9 7a13 13 0 01-2 2.6M6.6 6.6C4 8 3 11 3 12c0 2 4 7 9 7a9 9 0 003.4-.7"/></svg>覗き見オートカモフラ</span>
+      <span class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4 4L19 6"/></svg>広告・追跡 2段階遮断</span>
+      <span class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>Face ID 内緒モード</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Use cases</p>
+        <h2>こんなときに</h2>
+        <p class="section-lede">日常のなかの「見られたくない」瞬間を、設定なしで守る。</p>
+      </div>
+      <div class="use-cases-grid">
+        <div class="use-case">
+          <span class="scene-tag">電車・カフェ</span>
+          <h3>隣に人が来た瞬間に</h3>
+          <p>視線を感じてホーム画面に戻すだけで、Umbric は自動で画面をカモフラージュ。タスク切替の一覧にも実画面は残りません。</p>
+        </div>
+        <div class="use-case">
+          <span class="scene-tag">端末を渡すとき</span>
+          <h3>"ちょっと見せて"に</h3>
+          <p>誰かに端末を渡す瞬間でも、内緒モードのタブ・履歴・ブックマークは Face ID の中。通常モードだけが見える状態に保てます。</p>
+        </div>
+        <div class="use-case">
+          <span class="scene-tag">検索を残したくない</span>
+          <h3>調べものの後に</h3>
+          <p>赤シールドをワンタップで、Cookie・履歴・キャッシュ・最近閉じたタブを一括消去。セッション間にも自動で残りません。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Two axes</p>
+        <h2>2 つの軸で守る</h2>
+        <p class="section-lede">"残さない" と "見せない" は別の問題。Umbric はその両方を初期状態で守ります。</p>
+      </div>
+      <div class="axes">
+        <div class="axis axis-trace">
+          <span class="axis-num">01 — DATA</span>
+          <h3>痕跡を残さない</h3>
+          <p>Cookie・キャッシュ・Web ストレージはセッション間に残らず、外部送信もゼロ。閲覧履歴は端末内のみで、いつでもワンタップで一括消去できます。</p>
+        </div>
+        <div class="axis axis-hide">
+          <span class="axis-num">02 — PHYSICAL</span>
+          <h3>見せない</h3>
+          <p>覗き見・画面を渡す一瞬・偽装を想定した、能動的に「見せない」設計。バックグラウンドに移した瞬間、画面は自動でカモフラージュされます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Features</p>
+        <h2>主な機能</h2>
+        <p class="section-lede">3 つの中心機能 + 細部まで作り込まれた防御層。</p>
+      </div>
+      <div class="feature-highlights">
+        <div class="feature-highlight">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5c5 0 9 5 9 7s-4 7-9 7-9-5-9-7 4-7 9-7z"/><path d="M3 3l18 18"/></svg></div>
+          <h3>自動カモフラージュ</h3>
+          <p>バックグラウンド遷移と同時に、現在のページは別のダミー表示に置き換わります。覗き見・タスク切替・スクリーンショットへの一次防御。</p>
+        </div>
+        <div class="feature-highlight">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <h3>ワンタップ一括消去</h3>
+          <p>アドレスバー横の赤シールドで、タブ・最近閉じたタブ・Cookie・キャッシュ・履歴を範囲指定で一気に削除できます。</p>
+        </div>
+        <div class="feature-highlight">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/><circle cx="12" cy="15.5" r="1.4" fill="currentColor"/></svg></div>
+          <h3>Face ID 内緒モード</h3>
+          <p>通常モードと完全に分離された、Face ID 保護下の独立した閲覧領域。タブ・履歴・ブックマークもそれぞれ別管理。</p>
+        </div>
+      </div>
+
+      <p class="other-features-title">その他の機能</p>
+      <ul class="other-features">
+        <li>Cookie・キャッシュを非永続化（セッション間に残らない）</li>
+        <li>閲覧履歴は端末内のみ、外部送信なし</li>
+        <li>広告とトラッカーを 2 段階で遮断（ネットワーク + DOM）</li>
+        <li>Cookie 同意バナーを自動 reject（主要 14 種 CMP 対応）</li>
+        <li>URL から追跡パラメータを自動除去（utm_, fbclid, gclid 等）</li>
+        <li>指紋採取対策（Canvas / WebGL / AudioContext / Navigator）</li>
+        <li>HTTPS 強制 / 詐欺サイト警告 / JS ダイアログ遮断</li>
+        <li>Lockdown Mode 強制（Umbric だけに iOS 相当の最強制限を適用）</li>
+        <li>EasyList Japan 含む 7 本のフィルタリストを同梱</li>
+        <li>Focus フィルター連携で内緒モードを自動切替</li>
+        <li>リーダーモード（読み上げ・要約対応）/ 最近閉じたタブ復元</li>
+        <li>12 言語対応（アプリ単位での言語切替）</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="pro" class="pro">
+    <div class="wrap">
+      <div class="pro-card">
+        <div class="section-head" style="margin-bottom:0;">
+          <span class="pro-badge">Umbric Pro</span>
+          <h2 style="margin-top:18px;">もう一段、見せない。</h2>
+          <p class="section-lede">守りの線を、自分の手で引き直す。Free の防御に、能動的な "見せない" を重ねるアップグレード。</p>
+        </div>
+        <div class="pro-highlights">
+          <div class="pro-feature"><h3>Tilt Camouflage</h3><p>端末を素早く傾けるとカモフラ画面が被さる。感度を 3 段階で調整。</p></div>
+          <div class="pro-feature"><h3>Shake to Wipe</h3><p>端末を振るだけで全タブ・Cookie を一括消去。押し間違えないジェスチャー。</p></div>
+          <div class="pro-feature"><h3>Screen Capture Block</h3><p>画面録画・ミラーリング中は自動でカモフラ画面に置き換わる。</p></div>
+          <div class="pro-feature"><h3>偽装アイコン</h3><p>アイコンと表示名を別アプリに偽装。ホーム画面から "Umbric" を消せる。</p></div>
+          <div class="pro-feature"><h3>ロックフォルダ</h3><p>Face ID で守られたブックマークの隠しフォルダを持てる。</p></div>
+          <div class="pro-feature"><h3>UserScript</h3><p>Tampermonkey 風の自前スクリプト。サイトの挙動を自由に調整できる。</p></div>
+        </div>
+        <p class="other-features-title">その他 Pro 機能</p>
+        <ul class="other-features">
+          <li>カスタム検索エンジン追加</li>
+          <li>カスタム User-Agent / サイト別 UA 上書き</li>
+          <li>サイト別広告 allowlist 無制限</li>
+          <li>タップでブロック無制限（画像長押し）</li>
+          <li>フィルタリスト自動更新</li>
+          <li>動画ダウンロード無制限</li>
+          <li>アクセントカラー変更</li>
+          <li>閉じたタブ復元枠の拡張</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head"><p class="kicker">Why</p><h2>なぜ作ったか</h2></div>
+      <div class="why">
+        <p>プライベートな検索を、誰にも見られず、誰にも保存されないまま終わらせたかった。</p>
+        <p>既存のブラウザにも「プライベートタブ」や「履歴削除」はある。けれどそれらは "毎回意識する" 操作で、忘れた瞬間に痕跡は残る。さらに、設定では守れない領域がある——隣に座った人の視線、家族に端末を渡す一瞬、App Switcher に映る画面。</p>
+        <p>Umbric は "残さない・見せない" を初期状態にした iOS ブラウザです。Apple 純正のプライバシー保護機能を最大限活用しつつ、覗き見・端末共有・偽装といった "物理的に見られる" 状況にも能動的に対応します。</p>
+        <p class="signature">— MRCY</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head"><p class="kicker">FAQ</p><h2>よくある質問</h2></div>
+      <div class="faq-list">
+        <details><summary>Safari のプライベートタブと何が違いますか？</summary><div class="faq-answer">Safari Private は履歴を残さないだけです。Umbric はそれに加えて、バックグラウンド時の自動カモフラージュ、Face ID で守られた内緒モード、ネットワーク層と DOM 層の 2 段階ブロック、Canvas / WebGL / AudioContext レベルの指紋採取対策、ワンタップ範囲指定消去など、能動的な防御層を備えています。</div></details>
+        <details><summary>本当に追跡されない？</summary><div class="faq-answer">Cookie・キャッシュ・Web ストレージはセッション間に残しません。閲覧履歴は端末内のみで、外部への送信はゼロです。広告ネットワークによるフィンガープリンティングも、Canvas / WebGL / AudioContext / Navigator など複数のレイヤーで抑制しています。</div></details>
+        <details><summary>バックグラウンドカモフラージュって何ですか？</summary><div class="faq-answer">アプリをホーム画面に戻したり、App Switcher を開いた瞬間、現在のページが別のダミー画面に自動で置き換わる機能です。覗き見・ショルダーハッキング・他人に端末を渡したときの一次防御として機能します。</div></details>
+        <details><summary>内緒モードと通常モードは何が違いますか？</summary><div class="faq-answer">内緒モードは Face ID で保護された、完全に独立した閲覧領域です。タブ・履歴・ブックマークも通常モードとは別管理。Focus フィルターと連携させれば、特定の集中モードに入ったときだけ自動で切り替えることもできます。</div></details>
+        <details><summary>Free のままでも十分守られますか？</summary><div class="faq-answer">プライバシーの土台はすべて Free に含まれます。Cookie 非永続化・バックグラウンドカモフラ・内緒モード・広告と追跡の 2 段階遮断・指紋採取対策・Cookie 同意自動 reject など、コアの防御は買わなくても全員に効きます。Pro は「自分の手で守りを引き直す」コントロール体験を重ねる層です。</div></details>
+        <details><summary>Cookie 同意バナーを自動 reject にして支障はありませんか？</summary><div class="faq-answer">主要 14 種の Cookie 管理プラットフォーム (CMP) を対象に、最小限の同意で閉じます。サイトの一部機能が動かなくなるケースもまれにあるため、サイト別 allowlist で「このサイトだけ自動 reject を外す」設定が可能です。</div></details>
+        <details><summary>アップデートは無料ですか？</summary><div class="faq-answer">アプリのバージョンアップによる新機能・互換性アップデートはすべて無料です。Pro も買い切り型のため、購入後の追加課金やサブスクリプションは発生しません。</div></details>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head"><p class="kicker">Name</p><h2>名前について</h2></div>
+      <div class="about">
+        <p>"Umbric"（アンブリック）は、ラテン語の Umbra（影）と Trick（さりげない手立て）から生まれた造語。画面の隣にあっても出しゃばらず、見られそうな瞬間にはさっと姿を隠して、自分のプライバシーを自分の手で守る——そのコンセプトをそのまま体験にしたブラウザです。</p>
+        <p>痕跡を残さないのは、誰かを欺くためではなく、自分のプライベートを自分で守るためです。</p>
+        <p class="closing">残さない。見せない。— Umbric。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="final-cta">
+        <h2>今すぐ、痕跡を残さないブラウジングを。</h2>
+        <p>App Store で無料ダウンロード。iOS 26.0 以降。<br>Pro はアプリ内から、いつでも。</p>
+        <div class="ctas">
+          <a class="cta cta-appstore" href="https://apps.apple.com/app/umbric/id6742196922">
+            <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+            <span class="cta-label"><span class="cta-pretitle">Download on the</span><span class="cta-title">App Store</span></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="links">
+        <a href="./privacy-policy/">プライバシーポリシー</a>
+        <a href="./terms-of-use/">利用規約</a>
+        <a href="./support/">お問い合わせ</a>
+      </div>
+      <p>© 2026 MRCY</p>
+      <p class="lang"><a href="./en/">English</a></p>
+    </div>
+  </footer>
+</body>
+</html>
