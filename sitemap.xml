@@ -42,4 +42,45 @@
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+  <url>
+    <loc>https://mrcy.jp/chuju-tore/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://mrcy.jp/chuju-tore/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mrcy.jp/chuju-tore/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mrcy.jp/chuju-tore/"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://mrcy.jp/chuju-tore/en/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://mrcy.jp/chuju-tore/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mrcy.jp/chuju-tore/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mrcy.jp/chuju-tore/"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://mrcy.jp/chuju-tore/privacy-policy/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mrcy.jp/chuju-tore/terms-of-use/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mrcy.jp/chuju-tore/en/privacy-policy/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mrcy.jp/chuju-tore/en/terms-of-use/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mrcy.jp/chuju-tore/support/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
 </urlset>

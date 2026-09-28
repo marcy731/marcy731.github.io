@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>中学受験トレ — 中学受験の毎日を、続く仕組みに。</title>
+  <meta name="description" content="中学受験トレは、中学受験の学習を毎日つづけるための iOS トレーニングアプリ。演習・復習・記録を一つにまとめ、アカウント登録なし・端末内保存で、お子さまの学習を安心して続けられます。">
+  <meta name="keywords" content="中学受験トレ, 中学受験, 学習, トレーニング, 演習, 復習, ドリル, 家庭学習, iOS">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="robots" content="index,follow">
+  <meta name="format-detection" content="telephone=no">
+
+
+  <link rel="canonical" href="https://mrcy.jp/chuju-tore/">
+  <link rel="alternate" hreflang="ja" href="https://mrcy.jp/chuju-tore/">
+  <link rel="alternate" hreflang="en" href="https://mrcy.jp/chuju-tore/en/">
+  <link rel="alternate" hreflang="x-default" href="https://mrcy.jp/chuju-tore/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="中学受験トレ">
+  <meta property="og:title" content="中学受験トレ — 中学受験の毎日を、続く仕組みに。">
+  <meta property="og:description" content="演習・復習・記録を一つに。毎日つづく、中学受験のトレーニングアプリ。">
+  <meta property="og:url" content="https://mrcy.jp/chuju-tore/">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "中学受験トレ",
+    "alternateName": "Chuju Tore",
+    "description": "中学受験の学習を毎日つづけるための iOS トレーニングアプリ。演習・復習・記録を一つにまとめ、アカウント登録なし・端末内保存で利用できます。",
+    "applicationCategory": "EducationApplication",
+    "operatingSystem": "iOS",
+    "url": "https://mrcy.jp/chuju-tore/",
+    "author": {
+      "@type": "Person",
+      "name": "MRCY"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "JPY",
+      "category": "Freemium"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #f5f7fb;
+      --surface-2: #eef2f9;
+      --text: #14181f;
+      --text-muted: #5b6472;
+      --text-dim: #8a93a2;
+      --accent: #2563eb;
+      --accent-soft: #dbe6ff;
+      --link: #2563eb;
+      --border: #e6eaf1;
+    }
+    *,*::before,*::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Sans", "Noto Sans JP", sans-serif;
+      margin: 0;
+      color: var(--text);
+      line-height: 1.7;
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+    header {
+      padding: 84px 0 68px;
+      text-align: center;
+      background: radial-gradient(ellipse at center top, #eef4ff 0%, #ffffff 62%);
+    }
+    .icon {
+      width: 96px; height: 96px;
+      border-radius: 22px;
+      margin: 0 auto 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(160deg, #3b82f6 0%, #2563eb 100%);
+      color: #fff;
+      font-size: 40px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      box-shadow: 0 14px 34px rgba(37,99,235,0.32), 0 2px 6px rgba(0,0,0,0.06);
+    }
+    h1 {
+      font-size: 40px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin: 0 0 12px;
+    }
+    .hero-copy {
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin: 0 0 8px;
+    }
+    .slogan { font-size: 17px; color: var(--text-muted); margin: 0 0 36px; }
+    .ctas { display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; align-items: center; }
+    .cta { display: inline-flex; align-items: center; text-decoration: none; transition: transform .12s ease; }
+    .cta:hover { transform: translateY(-1px); }
+    .cta-appstore { gap: 10px; padding: 12px 22px; border-radius: 14px; background: var(--text); color: #fff; }
+    .cta-appstore svg { width: 26px; height: 26px; flex-shrink: 0; }
+    .cta-appstore .cta-label { display: flex; flex-direction: column; text-align: left; line-height: 1.15; }
+    .cta-appstore .cta-pretitle { font-size: 11px; font-weight: 500; opacity: 0.75; }
+    .cta-appstore .cta-title { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
+    .cta-secondary { padding: 14px 22px; border-radius: 999px; color: var(--text); border: 1px solid var(--border); font-size: 15px; font-weight: 600; }
+    .cta-note { font-size: 13px; color: var(--text-muted); margin-top: 18px; }
+
+    section { padding: 68px 0; border-top: 1px solid var(--border); }
+    h2 { font-size: 27px; font-weight: 800; letter-spacing: -0.02em; margin: 0 0 8px; text-align: center; }
+    .section-lede { font-size: 15px; color: var(--text-muted); text-align: center; margin: 0 auto 40px; max-width: 560px; }
+
+    .feature-highlights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 40px; }
+    .feature-highlight { padding: 28px 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
+    .feature-highlight .accent-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); display: inline-block; margin-bottom: 14px; }
+    .feature-highlight h3 { font-size: 17px; font-weight: 700; margin: 0 0 10px; letter-spacing: -0.01em; }
+    .feature-highlight p { font-size: 14px; color: var(--text-muted); margin: 0; }
+
+    .other-features-title { font-size: 13px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 16px; text-align: center; }
+    .other-features { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 32px; padding: 0; margin: 0 auto; max-width: 720px; }
+    .other-features li { list-style: none; padding: 12px 0 12px 20px; position: relative; font-size: 14px; color: var(--text-muted); border-bottom: 1px solid var(--border); }
+    .other-features li::before { content: ""; position: absolute; left: 0; top: 19px; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+
+    .pro-badge-wrap { text-align: center; margin-bottom: 16px; }
+    .pro-badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 5px 12px; background: var(--accent); color: #fff; border-radius: 999px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .pro-highlights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 40px 0 0; }
+    .pro-feature { padding: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
+    .pro-feature h3 { font-size: 16px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.01em; }
+    .pro-feature p { font-size: 14px; color: var(--text-muted); margin: 0; }
+
+    .why { max-width: 640px; margin: 0 auto; }
+    .why p { font-size: 16px; color: var(--text-muted); margin: 0 0 16px; line-height: 1.8; }
+    .why .signature { font-size: 14px; color: var(--text-dim); margin-top: 24px; }
+
+    .faq-list { max-width: 720px; margin: 0 auto; }
+    .faq-list details { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
+    .faq-list summary { padding: 18px 22px; cursor: pointer; font-weight: 600; font-size: 15px; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    .faq-list summary::-webkit-details-marker { display: none; }
+    .faq-list summary::after { content: "+"; color: var(--text-muted); font-size: 20px; font-weight: 400; flex-shrink: 0; }
+    .faq-list details[open] summary::after { content: "−"; }
+    .faq-list .faq-answer { padding: 0 22px 18px; font-size: 14px; color: var(--text-muted); line-height: 1.8; }
+
+    .final-cta { text-align: center; padding: 78px 24px; background: radial-gradient(ellipse at center, #eef4ff 0%, #ffffff 72%); border-top: 1px solid var(--border); }
+    .final-cta h2 { font-size: 27px; margin-bottom: 12px; }
+    .final-cta p { color: var(--text-muted); font-size: 15px; margin: 0 0 28px; }
+
+    footer { padding: 48px 0 64px; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-dim); }
+    footer .links { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; justify-content: center; }
+    footer a { color: var(--text-muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+    footer p { text-align: center; margin: 4px 0; }
+    .lang { margin-top: 16px; }
+    .lang a { color: var(--link); }
+
+    @media (max-width: 720px) {
+      h1 { font-size: 32px; }
+      h2 { font-size: 24px; }
+      .hero-copy { font-size: 19px; }
+      section { padding: 56px 0; }
+      .feature-highlights,
+      .pro-highlights { grid-template-columns: 1fr; }
+      .other-features { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="icon" aria-hidden="true">中</div>
+      <h1>中学受験トレ</h1>
+      <p class="hero-copy">中学受験の毎日を、続く仕組みに。</p>
+      <p class="slogan">毎日つづく。積み上がる。</p>
+      <div class="ctas">
+        <!-- TODO: App Store 公開後、id6816994239 を実際のアプリ ID に差し替えてください -->
+        <a class="cta cta-appstore" href="https://apps.apple.com/jp/app/id6816994239">
+          <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true">
+            <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+          </svg>
+          <span class="cta-label">
+            <span class="cta-pretitle">Download on the</span>
+            <span class="cta-title">App Store</span>
+          </span>
+        </a>
+        <a class="cta cta-secondary" href="#features">機能を見る</a>
+      </div>
+      <p class="cta-note">iPhone・iPad 対応。アカウント登録は不要です。</p>
+    </div>
+  </header>
+
+  <section id="features">
+    <div class="wrap">
+      <h2>続けるための、3つの土台</h2>
+      <p class="section-lede">中学受験でいちばん難しいのは「毎日つづけること」。中学受験トレは、演習・復習・記録を一つにまとめて、続く流れをつくります。</p>
+      <div class="feature-highlights">
+        <div class="feature-highlight">
+          <span class="accent-dot"></span>
+          <h3>毎日の演習</h3>
+          <p>短い時間でも取り組める演習で、学習を習慣に。今日やることが決まっているから、迷わず始められます。</p>
+        </div>
+        <div class="feature-highlight">
+          <span class="accent-dot"></span>
+          <h3>間違いを、復習に</h3>
+          <p>間違えた問題を取りこぼさず、あとから見直せる。「できなかった」を「できる」に変える復習の流れを用意します。</p>
+        </div>
+        <div class="feature-highlight">
+          <span class="accent-dot"></span>
+          <h3>積み上がる記録</h3>
+          <p>取り組んだ量や結果が記録として残るから、頑張りが目に見える。続けるほど、伸びが実感できます。</p>
+        </div>
+      </div>
+
+      <p class="other-features-title">その他の特長</p>
+      <ul class="other-features">
+        <li>アカウント登録なしで、すぐに始められる</li>
+        <li>学習データは端末内に保存（外部送信なし）</li>
+        <li>広告・トラッキングは一切なし</li>
+        <li>スキマ時間で取り組める軽い設計</li>
+        <li>お子さまが安心して使えるシンプルな画面</li>
+        <li>継続をあと押しする学習記録</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="pro-badge-wrap"><span class="pro-badge">中学受験トレ Plus</span></div>
+      <h2>もっと、伸ばす。</h2>
+      <p class="section-lede">基本機能は無料。さらに深く取り組みたいご家庭向けに、Plus（サブスクリプション）をご用意しています。</p>
+      <div class="pro-highlights">
+        <div class="pro-feature">
+          <h3>すべてのレベルを解放</h3>
+          <p>ドリル・くふう計算・こくごの全レベルに挑戦できます。</p>
+        </div>
+        <div class="pro-feature">
+          <h3>全期間のきろくとグラフ</h3>
+          <p>始めた日からのタイム・正答率の推移を、すべて振り返れます。</p>
+        </div>
+        <div class="pro-feature">
+          <h3>開発の応援</h3>
+          <p>今後の新しいトレーニングや機能の開発につながります。</p>
+        </div>
+      </div>
+      <p class="cta-note" style="text-align:center;">Plus はアプリ内から、いつでも登録・解約できます。</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>なぜ作ったか</h2>
+      <div class="why">
+        <p>中学受験は、特別な一日ではなく、地味な毎日の積み重ねで決まっていく。けれど、その「毎日つづける」がいちばん難しい。</p>
+        <p>教材はあっても、今日どこをやるか、間違えた問題をいつ見直すか、どれだけ積み上がったか——それを毎回考えるのは、子どもにとっても保護者にとっても負担でした。</p>
+        <p>中学受験トレは、演習・復習・記録をひとつにまとめて、「続く流れ」だけを残したアプリです。アカウントもいらず、データは端末の中だけ。安心して、毎日の学習に集中できます。</p>
+        <p class="signature">— MRCY</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>よくある質問</h2>
+      <div class="faq-list">
+        <details>
+          <summary>無料でどこまで使えますか？</summary>
+          <div class="faq-answer">基本機能は無料でご利用いただけます。すべてのレベルや、全期間のきろくをご希望の場合は、Plus（サブスクリプション）へご登録いただけます。</div>
+        </details>
+        <details>
+          <summary>Plus の解約はどうすればいいですか？</summary>
+          <div class="faq-answer">Plus は自動更新サブスクリプションです。解約は、App Store アカウントの設定からいつでも行えます。現在の期間の終了24時間前までに自動更新をオフにすると、次回以降は課金されません。詳しくは<a href="./terms-of-use/">利用規約</a>をご覧ください。</div>
+        </details>
+        <details>
+          <summary>アカウント登録は必要ですか？</summary>
+          <div class="faq-answer">不要です。ダウンロードしてすぐに始められます。学習データはお使いの端末の中にのみ保存され、当方のサーバーには送信されません。</div>
+        </details>
+        <details>
+          <summary>子どもが使っても安心ですか？</summary>
+          <div class="faq-answer">中学受験トレは広告やトラッキングを一切含まず、個人情報も収集しません。学習データは端末内のみに保存されます。詳しくは<a href="./privacy-policy/">プライバシーポリシー</a>をご覧ください。</div>
+        </details>
+        <details>
+          <summary>データはどこに保存されますか？</summary>
+          <div class="faq-answer">学習履歴・成績・進捗などのデータは、すべてお使いの端末内に保存されます。外部への送信はありません。アプリをアンインストールすると、端末内のデータは削除されます。</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <div class="final-cta">
+    <h2>今日から、毎日つづく学習を。</h2>
+    <p>App Store でダウンロード。アカウント登録は不要です。</p>
+    <!-- TODO: App Store 公開後、id6816994239 を実際のアプリ ID に差し替えてください -->
+    <a class="cta cta-appstore" href="https://apps.apple.com/jp/app/id6816994239">
+      <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true">
+        <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+      </svg>
+      <span class="cta-label">
+        <span class="cta-pretitle">Download on the</span>
+        <span class="cta-title">App Store</span>
+      </span>
+    </a>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <div class="links">
+        <a href="./privacy-policy/">プライバシーポリシー</a>
+        <a href="./terms-of-use/">利用規約</a>
+        <a href="./support/">お問い合わせ</a>
+      </div>
+      <p>© 2026 MRCY</p>
+      <p class="lang"><a href="./en/">English</a></p>
+    </div>
+  </footer>
+</body>
+</html>

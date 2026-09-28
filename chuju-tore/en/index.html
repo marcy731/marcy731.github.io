@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chuju Tore — Make daily exam prep a habit.</title>
+  <meta name="description" content="Chuju Tore is an iOS training app for Japanese junior-high entrance exam study. Practice, review, and records in one place — no account required, all data kept on-device.">
+  <meta name="keywords" content="Chuju Tore, junior high entrance exam, study, training, practice, review, drills, home study, iOS">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="robots" content="index,follow">
+  <meta name="format-detection" content="telephone=no">
+
+
+  <link rel="canonical" href="https://mrcy.jp/chuju-tore/en/">
+  <link rel="alternate" hreflang="ja" href="https://mrcy.jp/chuju-tore/">
+  <link rel="alternate" hreflang="en" href="https://mrcy.jp/chuju-tore/en/">
+  <link rel="alternate" hreflang="x-default" href="https://mrcy.jp/chuju-tore/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Chuju Tore">
+  <meta property="og:title" content="Chuju Tore — Make daily exam prep a habit.">
+  <meta property="og:description" content="Practice, review, and records in one place. A daily training app for junior-high entrance exam study.">
+  <meta property="og:url" content="https://mrcy.jp/chuju-tore/en/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="ja_JP">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "Chuju Tore",
+    "alternateName": "中学受験トレ",
+    "description": "An iOS training app for Japanese junior-high entrance exam study. Practice, review, and records in one place, with no account required and all data kept on-device.",
+    "applicationCategory": "EducationApplication",
+    "operatingSystem": "iOS",
+    "url": "https://mrcy.jp/chuju-tore/en/",
+    "author": {
+      "@type": "Person",
+      "name": "MRCY"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "category": "Freemium"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #f5f7fb;
+      --surface-2: #eef2f9;
+      --text: #14181f;
+      --text-muted: #5b6472;
+      --text-dim: #8a93a2;
+      --accent: #2563eb;
+      --accent-soft: #dbe6ff;
+      --link: #2563eb;
+      --border: #e6eaf1;
+    }
+    *,*::before,*::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+      margin: 0;
+      color: var(--text);
+      line-height: 1.7;
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+    header {
+      padding: 84px 0 68px;
+      text-align: center;
+      background: radial-gradient(ellipse at center top, #eef4ff 0%, #ffffff 62%);
+    }
+    .icon {
+      width: 96px; height: 96px;
+      border-radius: 22px;
+      margin: 0 auto 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(160deg, #3b82f6 0%, #2563eb 100%);
+      color: #fff;
+      font-size: 40px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      box-shadow: 0 14px 34px rgba(37,99,235,0.32), 0 2px 6px rgba(0,0,0,0.06);
+    }
+    h1 { font-size: 40px; font-weight: 800; letter-spacing: -0.03em; margin: 0 0 12px; }
+    .hero-copy { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 8px; }
+    .slogan { font-size: 17px; color: var(--text-muted); margin: 0 0 36px; }
+    .ctas { display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; align-items: center; }
+    .cta { display: inline-flex; align-items: center; text-decoration: none; transition: transform .12s ease; }
+    .cta:hover { transform: translateY(-1px); }
+    .cta-appstore { gap: 10px; padding: 12px 22px; border-radius: 14px; background: var(--text); color: #fff; }
+    .cta-appstore svg { width: 26px; height: 26px; flex-shrink: 0; }
+    .cta-appstore .cta-label { display: flex; flex-direction: column; text-align: left; line-height: 1.15; }
+    .cta-appstore .cta-pretitle { font-size: 11px; font-weight: 500; opacity: 0.75; }
+    .cta-appstore .cta-title { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
+    .cta-secondary { padding: 14px 22px; border-radius: 999px; color: var(--text); border: 1px solid var(--border); font-size: 15px; font-weight: 600; }
+    .cta-note { font-size: 13px; color: var(--text-muted); margin-top: 18px; }
+
+    section { padding: 68px 0; border-top: 1px solid var(--border); }
+    h2 { font-size: 27px; font-weight: 800; letter-spacing: -0.02em; margin: 0 0 8px; text-align: center; }
+    .section-lede { font-size: 15px; color: var(--text-muted); text-align: center; margin: 0 auto 40px; max-width: 560px; }
+
+    .feature-highlights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 40px; }
+    .feature-highlight { padding: 28px 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
+    .feature-highlight .accent-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); display: inline-block; margin-bottom: 14px; }
+    .feature-highlight h3 { font-size: 17px; font-weight: 700; margin: 0 0 10px; letter-spacing: -0.01em; }
+    .feature-highlight p { font-size: 14px; color: var(--text-muted); margin: 0; }
+
+    .other-features-title { font-size: 13px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 16px; text-align: center; }
+    .other-features { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 32px; padding: 0; margin: 0 auto; max-width: 720px; }
+    .other-features li { list-style: none; padding: 12px 0 12px 20px; position: relative; font-size: 14px; color: var(--text-muted); border-bottom: 1px solid var(--border); }
+    .other-features li::before { content: ""; position: absolute; left: 0; top: 19px; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+
+    .pro-badge-wrap { text-align: center; margin-bottom: 16px; }
+    .pro-badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 5px 12px; background: var(--accent); color: #fff; border-radius: 999px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .pro-highlights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 40px 0 0; }
+    .pro-feature { padding: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
+    .pro-feature h3 { font-size: 16px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.01em; }
+    .pro-feature p { font-size: 14px; color: var(--text-muted); margin: 0; }
+
+    .why { max-width: 640px; margin: 0 auto; }
+    .why p { font-size: 16px; color: var(--text-muted); margin: 0 0 16px; line-height: 1.8; }
+    .why .signature { font-size: 14px; color: var(--text-dim); margin-top: 24px; }
+
+    .faq-list { max-width: 720px; margin: 0 auto; }
+    .faq-list details { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
+    .faq-list summary { padding: 18px 22px; cursor: pointer; font-weight: 600; font-size: 15px; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    .faq-list summary::-webkit-details-marker { display: none; }
+    .faq-list summary::after { content: "+"; color: var(--text-muted); font-size: 20px; font-weight: 400; flex-shrink: 0; }
+    .faq-list details[open] summary::after { content: "−"; }
+    .faq-list .faq-answer { padding: 0 22px 18px; font-size: 14px; color: var(--text-muted); line-height: 1.8; }
+
+    .final-cta { text-align: center; padding: 78px 24px; background: radial-gradient(ellipse at center, #eef4ff 0%, #ffffff 72%); border-top: 1px solid var(--border); }
+    .final-cta h2 { font-size: 27px; margin-bottom: 12px; }
+    .final-cta p { color: var(--text-muted); font-size: 15px; margin: 0 0 28px; }
+
+    footer { padding: 48px 0 64px; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-dim); }
+    footer .links { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; justify-content: center; }
+    footer a { color: var(--text-muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+    footer p { text-align: center; margin: 4px 0; }
+    .lang { margin-top: 16px; }
+    .lang a { color: var(--link); }
+
+    @media (max-width: 720px) {
+      h1 { font-size: 32px; }
+      h2 { font-size: 24px; }
+      .hero-copy { font-size: 19px; }
+      section { padding: 56px 0; }
+      .feature-highlights,
+      .pro-highlights { grid-template-columns: 1fr; }
+      .other-features { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="icon" aria-hidden="true">中</div>
+      <h1>Chuju Tore</h1>
+      <p class="hero-copy">Make daily exam prep a habit.</p>
+      <p class="slogan">Every day. It adds up.</p>
+      <div class="ctas">
+        <!-- TODO: Replace id6816994239 with the real App Store app ID after release -->
+        <a class="cta cta-appstore" href="https://apps.apple.com/app/id6816994239">
+          <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true">
+            <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+          </svg>
+          <span class="cta-label">
+            <span class="cta-pretitle">Download on the</span>
+            <span class="cta-title">App Store</span>
+          </span>
+        </a>
+        <a class="cta cta-secondary" href="#features">See features</a>
+      </div>
+      <p class="cta-note">For iPhone and iPad. No account required.</p>
+    </div>
+  </header>
+
+  <section id="features">
+    <div class="wrap">
+      <h2>Three foundations for keeping it up</h2>
+      <p class="section-lede">The hardest part of exam prep is doing it every day. Chuju Tore brings practice, review, and records together so the daily habit sticks.</p>
+      <div class="feature-highlights">
+        <div class="feature-highlight">
+          <span class="accent-dot"></span>
+          <h3>Daily practice</h3>
+          <p>Practice you can fit into a short session, so studying becomes a habit. What to do today is already decided — just start.</p>
+        </div>
+        <div class="feature-highlight">
+          <span class="accent-dot"></span>
+          <h3>Turn mistakes into review</h3>
+          <p>Missed questions aren't lost — they come back for review, so "couldn't do it" turns into "can do it."</p>
+        </div>
+        <div class="feature-highlight">
+          <span class="accent-dot"></span>
+          <h3>Records that add up</h3>
+          <p>How much you've done and how you did stays as a record, so effort is visible. The more you keep going, the more the progress shows.</p>
+        </div>
+      </div>
+
+      <p class="other-features-title">More highlights</p>
+      <ul class="other-features">
+        <li>Start right away — no account required</li>
+        <li>Study data stays on-device (never sent externally)</li>
+        <li>No ads and no tracking whatsoever</li>
+        <li>Lightweight, made for short spare moments</li>
+        <li>A simple screen children can use with confidence</li>
+        <li>Study records that keep you going</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="pro-badge-wrap"><span class="pro-badge">Chuju Tore Plus</span></div>
+      <h2>Go further.</h2>
+      <p class="section-lede">The core features are free. For families who want to go deeper, Plus is available as a subscription.</p>
+      <div class="pro-highlights">
+        <div class="pro-feature">
+          <h3>Unlock every level</h3>
+          <p>Take on every level of the drills, calculation tricks, and Japanese practice.</p>
+        </div>
+        <div class="pro-feature">
+          <h3>Your full history &amp; charts</h3>
+          <p>Look back at time and accuracy trends from the very first day.</p>
+        </div>
+        <div class="pro-feature">
+          <h3>Support development</h3>
+          <p>Helps fund new training modes and features.</p>
+        </div>
+      </div>
+      <p class="cta-note" style="text-align:center;">Plus can be subscribed to and canceled anytime from within the app.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Why I built this</h2>
+      <div class="why">
+        <p>Entrance exam success isn't decided on one special day — it's built from the quiet accumulation of everyday effort. But keeping that up every day is the hardest part.</p>
+        <p>Even with good materials, deciding what to do today, when to review missed questions, and how much has piled up — working that out each time was a burden for children and parents alike.</p>
+        <p>Chuju Tore brings practice, review, and records into one place and leaves only the "flow that keeps going." No account needed, and your data stays on the device — so you can focus on the daily study with peace of mind.</p>
+        <p class="signature">— MRCY</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <details>
+          <summary>How much can I use for free?</summary>
+          <div class="faq-answer">The core features are free to use. If you'd like every level and your full history, you can subscribe to Plus.</div>
+        </details>
+        <details>
+          <summary>How do I cancel Plus?</summary>
+          <div class="faq-answer">Plus is an auto-renewing subscription. You can cancel anytime from your App Store account settings. Turn off auto-renewal at least 24 hours before the end of the current period to avoid the next charge. See the <a href="./terms-of-use/">Terms of Use</a> for details.</div>
+        </details>
+        <details>
+          <summary>Do I need an account?</summary>
+          <div class="faq-answer">No. Download and start right away. Study data is stored only on your device and is never sent to our servers.</div>
+        </details>
+        <details>
+          <summary>Is it safe for children to use?</summary>
+          <div class="faq-answer">Chuju Tore contains no ads or tracking and collects no personal information. Study data is stored on-device only. See the <a href="./privacy-policy/">Privacy Policy</a> for details.</div>
+        </details>
+        <details>
+          <summary>Where is my data stored?</summary>
+          <div class="faq-answer">Study history, scores, progress, and similar data are all stored on your device. Nothing is sent externally. Uninstalling the app deletes the on-device data.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <div class="final-cta">
+    <h2>Start a study habit that lasts.</h2>
+    <p>Download on the App Store. No account required.</p>
+    <!-- TODO: Replace id6816994239 with the real App Store app ID after release -->
+    <a class="cta cta-appstore" href="https://apps.apple.com/app/id6816994239">
+      <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true">
+        <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+      </svg>
+      <span class="cta-label">
+        <span class="cta-pretitle">Download on the</span>
+        <span class="cta-title">App Store</span>
+      </span>
+    </a>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <div class="links">
+        <a href="./privacy-policy/">Privacy Policy</a>
+        <a href="./terms-of-use/">Terms of Use</a>
+        <a href="../support/">Contact</a>
+      </div>
+      <p>© 2026 MRCY</p>
+      <p class="lang"><a href="../">日本語</a></p>
+    </div>
+  </footer>
+</body>
+</html>
