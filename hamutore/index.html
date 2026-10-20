@@ -123,6 +123,9 @@
     .hero-phones .back { right: -20px; top: 70px; }
     .hero-phones .front { right: 160px; top: 0; }
     .hero-text { position: relative; z-index: 2; max-width: 520px; }
+    .hero-phones { display: flex; justify-content: center; align-items: flex-start; gap: 18px; height: auto; padding-top: 8px; }
+    .hero-phones .phone { position: static; width: calc(50% - 9px); max-width: 250px; }
+    .hero-phones .front { margin-top: 44px; }
     .sp-scene { display: none; }
     section { padding: 64px 0; border-top: 1px solid var(--border); }
     section.tint { background: var(--surface-2); }
@@ -284,6 +287,9 @@
       .hero-phones .front { left: auto; right: 104px; top: 0; }
       .hero-phones .back { right: 0; top: 50px; }
       .cta-note { margin-top: 10px; }
+      .hero-phones { display: flex; gap: 12px; height: auto; max-width: 400px; margin: 32px auto 0; }
+      .hero-phones .phone { position: static; width: calc(50% - 6px); max-width: none; border-radius: 26px; border-width: 4px; }
+      .hero-phones .front { margin-top: 36px; }
     }
     @media (max-width: 520px) {
       h1 { font-size: 36px; margin-bottom: 12px; }
