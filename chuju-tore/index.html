@@ -123,6 +123,7 @@
     .hero-phones .back { right: -20px; top: 70px; }
     .hero-phones .front { right: 160px; top: 0; }
     .hero-text { position: relative; z-index: 2; max-width: 520px; }
+    .sp-scene { display: none; }
     section { padding: 64px 0; border-top: 1px solid var(--border); }
     section.tint { background: var(--surface-2); }
     h2 { font-size: 28px; font-weight: 800; letter-spacing: -0.01em; margin: 0 0 8px; text-align: center; line-height: 1.35; }
@@ -263,9 +264,30 @@
       .subjects, .who, .plans { grid-template-columns: 1fr; }
       .safety { grid-template-columns: 1fr 1fr; }
       nav.top ul { display: none; }
+      /* スマホのファーストビュー: アプリのホームと同じ「空・丘・ハムスター」から始める */
+      header.hero { padding-top: 0; padding-bottom: 40px; background: linear-gradient(180deg, #EAF6FB 0, #EAF6FB 180px, #FFF9ED 250px); }
+      .sp-scene { display: block; position: relative; height: 250px; z-index: 1; }
+      .sp-scene .hill { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .sp-scene .tree { position: absolute; }
+      .sp-hamster { position: absolute; left: 50%; bottom: 14px; width: 140px; margin-left: -70px; }
+      .sp-hamster img { width: 100%; height: auto; display: block; animation: hop 3.6s ease-in-out infinite; }
+      .sp-bubble { position: absolute; left: 50%; top: 34px; transform: translateX(-50%); background: #fff; border-radius: 22px; padding: 10px 18px; font-size: 15px; font-weight: 800; white-space: nowrap; box-shadow: 0 4px 14px rgba(40,59,48,0.08); }
+      .sp-bubble::after { content: ""; position: absolute; left: 50%; bottom: -9px; margin-left: -9px; border: 9px solid transparent; border-top-color: #fff; border-bottom: 0; }
+      .sun { width: 56px; height: 56px; top: 20px; right: 8%; }
+      .cloud { --w: 100px !important; }
+      .hero-hills { height: 34%; }
+      .pills { gap: 6px; margin: 6px 0 16px; }
+      .hero-lede { display: none; }
+      .hero-text > .hero-mascot { display: none; }
+      .hero-phones { margin-top: 32px; height: 460px; }
+      .hero-phones .phone { width: 200px; }
+      .hero-phones .front { left: auto; right: 104px; top: 0; }
+      .hero-phones .back { right: 0; top: 50px; }
+      .cta-note { margin-top: 10px; }
     }
     @media (max-width: 520px) {
-      h1 { font-size: 34px; }
+      h1 { font-size: 36px; margin-bottom: 12px; }
+      .hero-sub { font-size: 16px; margin-bottom: 18px; }
       .pill { font-size: 14px; padding: 6px 14px 6px 8px; }
       .pill img { width: 22px; height: 22px; }
         h2 { font-size: 24px; }
@@ -296,6 +318,15 @@
       <div class="sun"></div>
       <div class="cloud" style="--w:200px; --y:70px; --s:80s; --d:-25s; --x:60vw;"><span></span></div>
       <div class="cloud" style="--w:130px; --y:180px; --s:60s; --d:-45s; --x:12vw; --o:0.85;"><span></span></div>
+    </div>
+    <div class="sp-scene" aria-hidden="true">
+      <svg class="hill" viewBox="0 0 400 260" preserveAspectRatio="none"><path d="M0 260 L0 170 Q140 70 400 160 L400 260Z" fill="#DCEFC8"/></svg>
+      <div class="tree" style="width:52px; bottom:74px; left:6%;"><svg viewBox="0 0 100 140" aria-hidden="true"><rect x="44" y="70" width="12" height="70" rx="3" fill="#A27B5C"/><ellipse cx="50" cy="55" rx="47" ry="42" fill="#5DBB7A"/><ellipse cx="42" cy="40" rx="27" ry="22" fill="#8ED39A"/></svg></div>
+      <div class="tree" style="width:64px; bottom:66px; right:7%;"><svg viewBox="0 0 100 140" aria-hidden="true"><rect x="44" y="70" width="12" height="70" rx="3" fill="#A27B5C"/><ellipse cx="50" cy="55" rx="47" ry="42" fill="#5DBB7A"/><ellipse cx="42" cy="40" rx="27" ry="22" fill="#8ED39A"/></svg></div>
+      <svg class="hill" viewBox="0 0 400 260" preserveAspectRatio="none"><path d="M0 260 L0 205 Q280 120 400 196 L400 260Z" fill="#BCE3A2"/></svg>
+      <svg class="hill" viewBox="0 0 400 260" preserveAspectRatio="none"><path d="M0 260 L0 236 Q180 196 400 232 L400 260Z" fill="#FFF9ED"/></svg>
+      <div class="sp-bubble">いっしょに、5 問やろう!</div>
+      <div class="sp-hamster"><img src="./assets/hamster_front.png" alt="" width="360" height="360"></div>
     </div>
     <div class="hero-hills" aria-hidden="true">
       <svg viewBox="0 0 1440 600" preserveAspectRatio="none"><path d="M0 600 L0 300 Q720 90 1440 270 L1440 600Z" fill="#D4EFBC"/></svg>
