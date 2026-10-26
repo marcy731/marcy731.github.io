@@ -1,0 +1,12 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["AS6U2X4R9E.com.marcy731.chujutore"],
+        "components": [
+          { "/": "/hamutore/tokkun/*", "comment": "中学受験ハムトレ: 選んで特訓を送るリンク(中身は # の後ろ)" }
+        ]
+      }
+    ]
+  }
+}
