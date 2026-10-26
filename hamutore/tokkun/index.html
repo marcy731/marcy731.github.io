@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>選んで特訓が届きました｜中学受験ハムトレ</title>
+  <meta name="description" content="中学受験ハムトレの「選んで特訓」が届きました。ハムトレで開くと、自分の特訓として入れられます。">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#2BB3AE">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="中学受験ハムトレ">
+  <meta property="og:title" content="選んで特訓が届きました">
+  <meta property="og:description" content="ハムトレで開くと、自分の特訓として入れられます。">
+  <meta property="og:image" content="https://mrcy.jp/hamutore/assets/og-image.jpg">
+  <link rel="icon" type="image/png" sizes="512x512" href="/hamutore/assets/icon-512.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/hamutore/assets/apple-touch-icon.png">
+  <style>
+    :root {
+      --bg: #FFF9ED;
+      --surface: #ffffff;
+      --text: #283B30;
+      --text-muted: #5C6B62;
+      --teal: #2BB3AE;
+      --teal-deep: #1E8C88;
+      --green: #2F9E62;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Maru Gothic ProN", "Hiragino Sans", sans-serif;
+      line-height: 1.6;
+    }
+    main { max-width: 480px; margin: 0 auto; padding: 32px 16px 48px; text-align: center; }
+    .hamster { width: 120px; height: auto; }
+    .card {
+      margin: 16px 0 24px;
+      padding: 20px;
+      border-radius: 24px;
+      background: var(--teal);
+      color: #fff;
+      text-align: left;
+      box-shadow: 0 4px 0 var(--teal-deep);
+    }
+    .card .badge { font-size: 14px; font-weight: 800; opacity: .9; margin: 0; }
+    .card .name { font-size: 24px; font-weight: 900; margin: 4px 0; word-break: break-all; }
+    .card .meta { font-size: 13px; font-weight: 700; opacity: .9; margin: 0; }
+    .button {
+      display: block;
+      margin: 12px 0;
+      padding: 16px;
+      border-radius: 999px;
+      font-size: 17px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .open { background: var(--teal); color: #fff; }
+    .store { background: var(--surface); color: var(--green); border: 2px solid var(--green); }
+    p.note { color: var(--text-muted); font-size: 14px; text-align: left; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <main>
+    <img class="hamster" src="/hamutore/assets/hamster_happy.png" alt="">
+    <div class="card">
+      <p class="badge">選んで特訓が届いたよ</p>
+      <p class="name" id="name">選んで特訓</p>
+      <p class="meta" id="meta" hidden></p>
+    </div>
+    <a class="button open" id="open" href="chujutore://tokkun">ハムトレで開く</a>
+    <p class="note">ハムトレで開くと、この特訓を自分の特訓として入れられます。</p>
+    <a class="button store" href="https://apps.apple.com/app/apple-store/id6816994239?pt=125123690&amp;ct=hamutore_tokkun&amp;mt=8">ハムトレを App Store で見る</a>
+    <p class="note">まだハムトレを入れていないときは、入れてから、もう一度このリンクを開いてください。</p>
+  </main>
+  <script>
+    // 特訓の中身は「#」の後ろ(縮めた JSON を URL に使える文字にしたもの)。サーバーには送られない
+    (async () => {
+      const packed = location.hash.slice(1);
+      if (!packed) return;
+      document.getElementById("open").href = "chujutore://tokkun#" + packed;
+      try {
+        const base64 = packed.replace(/-/g, "+").replace(/_/g, "/");
+        const bytes = Uint8Array.from(atob(base64 + "===".slice((base64.length + 3) % 4)), c => c.charCodeAt(0));
+        const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream("deflate-raw"));
+        const set = JSON.parse(await new Response(stream).text());
+        if (set.name) document.getElementById("name").textContent = set.name;
+        const meta = [];
+        if (Array.isArray(set.units)) meta.push(set.units.length + " 単元");
+        if (set.day) {
+          const [y, m, d] = set.day.split("-").map(Number);
+          meta.push(m + "月" + d + "日");
+        }
+        if (meta.length) {
+          const el = document.getElementById("meta");
+          el.textContent = meta.join("　");
+          el.hidden = false;
+        }
+      } catch (e) {
+        // 読めなくても、ボタンからアプリで開ける
+      }
+    })();
+  </script>
+</body>
+</html>
