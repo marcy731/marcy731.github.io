@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>中学受験ハムトレ — 漢字の字の形と筆順のデータ</title>
+  <link rel="canonical" href="https://mrcy.jp/hamutore/kanji-glyphs/">
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; max-width: 640px; margin: 48px auto; padding: 0 16px; color: #1c1c1e; line-height: 1.7; background: #fff; }
+    h1 { font-size: 22px; }
+    a { color: #007aff; }
+    code { background: #f2f2f7; padding: 1px 4px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>漢字の字の形と筆順のデータ</h1>
+  <p>アプリ「中学受験ハムトレ」で使っている、小学校で習う漢字(1026 字)の、1 画ずつの字の形と筆順のデータです。</p>
+  <p><a href="kanji_glyphs.json">kanji_glyphs.json をダウンロード</a> ・ <a href="ARPHICPL.TXT">ライセンス(ARPHICPL.TXT)</a></p>
+  <p>このデータは <a href="https://github.com/parsimonhi/animCJK">AnimCJK</a>(© FM&amp;SH。Arphic PL KaitiM GB / Big5 と
+     <a href="https://github.com/skishore/makemeahanzi">Makemeahanzi</a> をもとにしたもの)の <code>graphicsJa.txt</code> に、
+     小学校で習う形に直した <a href="https://github.com/k1LoW/subAnimJ">subAnimJ</a> の直しを当てて作りました。
+     元のデータと同じ <a href="ARPHICPL.TXT">Arphic Public License</a> で提供します。同じ条件で、自由に使ったり作りかえたりできます。</p>
+  <p>変えたこと(2026 年 11 月): 1〜6 年の 1026 字だけを取り出し、座標の上下を画面の向き(<code>y = 900 - y</code>)に直して、1 つの JSON にまとめました。字の形そのものは変えていません。</p>
+  <p>形式: <code>glyphs</code> に字ごとに、<code>strokes</code>(画ごとの輪郭。1024×1024 の中の SVG の path の d)と、
+     <code>medians</code>(画ごとの中心線。x, y, x, y, … の順)を、書く順に並べています。</p>
+  <hr>
+  <p lang="en">Per-stroke outlines and medians for the 1,026 kanji taught in Japanese elementary school.
+     Derived from <a href="https://github.com/parsimonhi/animCJK">AnimCJK</a> (© FM&amp;SH, based on Arphic PL KaitiM fonts and Makemeahanzi)
+     with the modifications of <a href="https://github.com/k1LoW/subAnimJ">subAnimJ</a>.
+     Modified in November 2026: extracted the 1,026 characters, flipped the y axis to screen coordinates (y = 900 - y) and merged them into one JSON file.
+     Glyph shapes are unchanged. Distributed under the <a href="ARPHICPL.TXT">Arphic Public License</a>.</p>
+</body>
+</html>
