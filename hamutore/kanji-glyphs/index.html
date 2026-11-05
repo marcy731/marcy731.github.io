@@ -20,14 +20,15 @@
      <a href="https://github.com/skishore/makemeahanzi">Makemeahanzi</a> をもとにしたもの)の <code>graphicsJa.txt</code> に、
      小学校で習う形に直した <a href="https://github.com/k1LoW/subAnimJ">subAnimJ</a> の直しを当てて作りました。
      元のデータと同じ <a href="ARPHICPL.TXT">Arphic Public License</a> で提供します。同じ条件で、自由に使ったり作りかえたりできます。</p>
-  <p>変えたこと(2026 年 11 月): 1〜6 年の 1026 字だけを取り出し、座標の上下を画面の向き(<code>y = 900 - y</code>)に直して、1 つの JSON にまとめました。字の形そのものは変えていません。</p>
+  <p>変えたこと(2026 年 11 月): 1〜6 年の 1026 字だけを取り出し、小学校で習う形に直し(画をのばしてとなりの画にとどかせる・画をほかの字の画と入れかえる。まだ直していない字の一部は subAnimJ の形を使用)、座標の上下を画面の向き(<code>y = 900 - y</code>)に直して、1 つの JSON にまとめました。</p>
   <p>形式: <code>glyphs</code> に字ごとに、<code>strokes</code>(画ごとの輪郭。1024×1024 の中の SVG の path の d)と、
      <code>medians</code>(画ごとの中心線。x, y, x, y, … の順)を、書く順に並べています。</p>
   <hr>
   <p lang="en">Per-stroke outlines and medians for the 1,026 kanji taught in Japanese elementary school.
      Derived from <a href="https://github.com/parsimonhi/animCJK">AnimCJK</a> (© FM&amp;SH, based on Arphic PL KaitiM fonts and Makemeahanzi)
      with the modifications of <a href="https://github.com/k1LoW/subAnimJ">subAnimJ</a>.
-     Modified in November 2026: extracted the 1,026 characters, flipped the y axis to screen coordinates (y = 900 - y) and merged them into one JSON file.
-     Glyph shapes are unchanged. Distributed under the <a href="ARPHICPL.TXT">Arphic Public License</a>.</p>
+     Modified in November 2026: extracted the 1,026 characters, modified some glyphs to the forms taught in Japanese elementary school
+     (strokes extended to touch, strokes replaced; subAnimJ glyphs used for some characters not yet modified),
+     flipped the y axis to screen coordinates (y = 900 - y) and merged them into one JSON file. Distributed under the <a href="ARPHICPL.TXT">Arphic Public License</a>.</p>
 </body>
 </html>
